@@ -1,5 +1,6 @@
 [versions]
 # libraries
+suncalc = "3.11"
 junit = "4.13.2"
 
 # plugins
@@ -10,6 +11,7 @@ kover = "0.8.3"
 qodana = "2024.2.6"
 
 [libraries]
+suncalc = { group =  "org.shredzone.commons", name = "commons-suncalc", version.ref = "suncalc" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 [plugins]
