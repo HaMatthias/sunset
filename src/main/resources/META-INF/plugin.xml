@@ -12,6 +12,18 @@
         <toolWindow factoryClass="com.github.hamatthias.sunset.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
     </extensions>
 
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable
+            parentId="tools"
+            instance="com.github.hamatthias.sunset.settings.SunsetApplicationSettingsConfigurable"
+            id="com.github.hamatthias.sunset.settings.SunsetApplicationSettingsConfigurable"
+            displayName="SDK: Application Settings example" />
+    </extensions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="com.github.hamatthias.sunset.settings.SunsetApplicationSettings" />
+    </extensions>
+
     <applicationListeners>
         <listener class="com.github.hamatthias.sunset.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
     </applicationListeners>
