@@ -6,12 +6,15 @@ import com.intellij.ui.components.JBTextField
 import com.intellij.util.ui.FormBuilder
 import javax.swing.JComponent
 import javax.swing.JPanel
+import com.intellij.ui.dsl.builder.panel
 
 
 /**
  * Supports creating and managing a JPanel for the Settings Dialog.
  */
 class SunsetApplicationSettingsComponent() {
+
+  private val settings = SunsetApplicationSettings.getInstance()
 
   private var myMainPanel: JPanel
   private val myUserNameText = JBTextField()
@@ -26,7 +29,17 @@ class SunsetApplicationSettingsComponent() {
   }
 
   fun getPanel(): JPanel {
-    return myMainPanel
+    return panel {
+      row() {
+        label("Add your location: ")
+      }
+      row("Längengrad") {
+        textField()
+      }
+      row("Breitengrad") {
+        textField()
+      }
+    }
   }
 
   fun getPreferredFocusedComponent(): JComponent {
