@@ -11,24 +11,22 @@ import javax.swing.JComponent
 
 class SunsetApplicationSettingsConfigurable : Configurable {
 
-  private var sunsetApplicationSettingsComponent : SunsetApplicationSettingsComponent? = null
+  private var sunsetApplicationSettingsComponent = SunsetApplicationSettingsComponent()
 
   override fun createComponent(): JComponent {
-    sunsetApplicationSettingsComponent = SunsetApplicationSettingsComponent()
-    return sunsetApplicationSettingsComponent!!.getPanel()
+    return sunsetApplicationSettingsComponent.getPanel()
   }
 
   override fun isModified(): Boolean {
     val sunsetApplicationSettingsState = SunsetApplicationSettings.getInstance().state
-    return (((sunsetApplicationSettingsComponent?.getUserNameText() ?: false) != sunsetApplicationSettingsState.userId
-        || (sunsetApplicationSettingsComponent?.getIdeaUserStatus()
-      ?: false) != sunsetApplicationSettingsState.ideaStatus))
+    return (sunsetApplicationSettingsComponent.getUserNameText() != sunsetApplicationSettingsState.userId
+        || sunsetApplicationSettingsComponent.getIdeaUserStatus() != sunsetApplicationSettingsState.ideaStatus)
   }
 
   override fun apply() {
     val sunsetApplicationSettingsState = SunsetApplicationSettings.getInstance().state
-    sunsetApplicationSettingsState.userId = sunsetApplicationSettingsComponent?.getUserNameText() ?: "No Text defined"
-    sunsetApplicationSettingsState.ideaStatus = sunsetApplicationSettingsComponent?.getIdeaUserStatus() ?: false
+    sunsetApplicationSettingsState.userId = sunsetApplicationSettingsComponent.getUserNameText()
+    sunsetApplicationSettingsState.ideaStatus = sunsetApplicationSettingsComponent.getIdeaUserStatus()
   }
 
   @Nls(capitalization = Nls.Capitalization.Title)
@@ -36,19 +34,13 @@ class SunsetApplicationSettingsConfigurable : Configurable {
     return "My Settings Page"
   }
 
-  override fun getPreferredFocusedComponent(): JComponent? {
-    return sunsetApplicationSettingsComponent?.getPreferredFocusedComponent();
+  override fun getPreferredFocusedComponent(): JComponent {
+    return sunsetApplicationSettingsComponent.getPreferredFocusedComponent();
   }
 
   override fun reset() {
     val sunsetApplicationSettingsState = SunsetApplicationSettings.getInstance().state
-    sunsetApplicationSettingsComponent?.setUserNameText(sunsetApplicationSettingsState.userId)
-    sunsetApplicationSettingsComponent?.setIdeaUserStatus(sunsetApplicationSettingsState.ideaStatus)
+    sunsetApplicationSettingsComponent.setUserNameText(sunsetApplicationSettingsState.userId)
+    sunsetApplicationSettingsComponent.setIdeaUserStatus(sunsetApplicationSettingsState.ideaStatus)
   }
-
-  override fun disposeUIResources() {
-    sunsetApplicationSettingsComponent = null
-  }
-
-
 }
