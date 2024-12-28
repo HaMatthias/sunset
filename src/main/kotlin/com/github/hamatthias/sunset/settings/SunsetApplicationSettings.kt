@@ -18,7 +18,7 @@ class SunsetApplicationSettings : PersistentStateComponent<SunsetApplicationSett
     var ideaStatus: Boolean = false
   }
 
-  private var myState: State = State()
+  private var currentState: State = State()
 
   companion object {
     fun getInstance(): SunsetApplicationSettings {
@@ -28,10 +28,10 @@ class SunsetApplicationSettings : PersistentStateComponent<SunsetApplicationSett
   }
 
   override fun getState(): State {
-    return myState
+    return currentState
   }
 
   override fun loadState(state: State) {
-    myState = state
+    currentState = state
   }
 }
