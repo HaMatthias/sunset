@@ -1,46 +1,36 @@
 package com.github.hamatthias.sunset.settings
 
-import com.intellij.ui.components.JBCheckBox
-import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBTextField
-import com.intellij.util.ui.FormBuilder
+import com.intellij.ui.dsl.builder.bindText
 import javax.swing.JComponent
 import javax.swing.JPanel
 import com.intellij.ui.dsl.builder.panel
-
 
 /**
  * Supports creating and managing a JPanel for the Settings Dialog.
  */
 class SunsetSettingsComponent() {
 
-  private val settings = SunsetSettings.getInstance()
+  private val settings : SunsetSettings = SunsetSettings.getInstance()
 
-  private var myMainPanel: JPanel
-  private val myUserNameText = JBTextField()
-  private val myIdeaUserStatus = JBCheckBox("IntelliJ IDEA user")
-
-  private val longitudeInput : JBTextField = JBTextField()
-  private val latitudeInput : JBTextField = JBTextField()
-
-  init {
-    myMainPanel = FormBuilder.createFormBuilder()
-      .addLabeledComponent(JBLabel("User name:"), myUserNameText, 1, false)
-      .addComponent(myIdeaUserStatus, 1)
-      .addComponentFillVertically(JPanel(), 0)
-      .panel
-  }
+  private var longitudeInput = JBTextField()
+  private val latitudeInput = JBTextField()
 
   fun getPanel(): JPanel {
     return panel {
       row() {
         label("Add your location: ")
+          .comment("Provide double values e.g.: 14.234342")
       }
-      row("Längengrad") {
+      row(SettingsBundle.setting("label.input.longitude")) {
         textField()
+          .bindText(settings.state::longitude)
       }
-      row("Breitengrad") {
+      row(SettingsBundle.setting("label.input.latitude")) {
         textField()
+          .bindText(settings.state::latitude)
+      }
+      row {
       }
     }
   }

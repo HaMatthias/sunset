@@ -14,8 +14,8 @@ class SunsetSettings : PersistentStateComponent<SunsetSettings.State> {
 
   class State {
     @NonNls
-    var longitude: String = "0.0"
-    var latitude: String = "0.0"
+    var longitude: String = DEFAULT_LONGITUDE
+    var latitude: String = DEFAULT_LATITUDE
   }
 
   private var currentState: State = State()
@@ -25,6 +25,9 @@ class SunsetSettings : PersistentStateComponent<SunsetSettings.State> {
       return ApplicationManager.getApplication()
         .getService(SunsetSettings::class.java)
     }
+
+    const val DEFAULT_LONGITUDE = "0.0"
+    const val DEFAULT_LATITUDE = "0.0"
   }
 
   override fun getState(): State {
