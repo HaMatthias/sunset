@@ -12,13 +12,16 @@ import com.intellij.ui.dsl.builder.panel
 /**
  * Supports creating and managing a JPanel for the Settings Dialog.
  */
-class SunsetApplicationSettingsComponent() {
+class SunsetSettingsComponent() {
 
-  private val settings = SunsetApplicationSettings.getInstance()
+  private val settings = SunsetSettings.getInstance()
 
   private var myMainPanel: JPanel
   private val myUserNameText = JBTextField()
   private val myIdeaUserStatus = JBCheckBox("IntelliJ IDEA user")
+
+  private val longitudeInput : JBTextField = JBTextField()
+  private val latitudeInput : JBTextField = JBTextField()
 
   init {
     myMainPanel = FormBuilder.createFormBuilder()
@@ -42,24 +45,24 @@ class SunsetApplicationSettingsComponent() {
     }
   }
 
+  fun getLongitudeText(): String {
+    return longitudeInput.text
+  }
+
+  fun setLongitudeText(longitude : String) {
+    longitudeInput.text = longitude
+  }
+
+  fun getLatitudeText(): String {
+    return latitudeInput.text
+  }
+
+  fun setLatitudeText(latitude : String) {
+    latitudeInput.text = latitude
+  }
+
   fun getPreferredFocusedComponent(): JComponent {
-    return myUserNameText
-  }
-
-  fun getUserNameText(): String {
-    return myUserNameText.text
-  }
-
-  fun setUserNameText(newText: String) {
-    myUserNameText.text = newText
-  }
-
-  fun getIdeaUserStatus(): Boolean {
-    return myIdeaUserStatus.isSelected
-  }
-
-  fun setIdeaUserStatus(newStatus: Boolean) {
-    myIdeaUserStatus.isSelected = newStatus
+    return longitudeInput
   }
 
 }

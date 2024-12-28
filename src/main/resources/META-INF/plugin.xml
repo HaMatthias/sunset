@@ -15,13 +15,13 @@
     <extensions defaultExtensionNs="com.intellij">
         <applicationConfigurable
             parentId="tools"
-            instance="com.github.hamatthias.sunset.settings.SunsetApplicationSettingsConfigurable"
-            id="com.github.hamatthias.sunset.settings.SunsetApplicationSettingsConfigurable"
+            instance="com.github.hamatthias.sunset.settings.SunsetSettingsConfigurable"
+            id="com.github.hamatthias.sunset.settings.SunsetSettingsConfigurable"
             displayName="SDK: Application Settings example" />
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.hamatthias.sunset.settings.SunsetApplicationSettings" />
+        <applicationService serviceImplementation="com.github.hamatthias.sunset.settings.SunsetSettings" />
     </extensions>
 
     <applicationListeners>

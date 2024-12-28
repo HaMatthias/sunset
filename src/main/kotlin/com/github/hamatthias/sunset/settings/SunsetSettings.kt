@@ -10,20 +10,20 @@ import org.jetbrains.annotations.NonNls
   name = "com.github.hamatthias.sunset.settings.SunsetApplicationSettings",
   storages = [Storage("SdkSettingsPlugin.xml")]
 )
-class SunsetApplicationSettings : PersistentStateComponent<SunsetApplicationSettings.State> {
+class SunsetSettings : PersistentStateComponent<SunsetSettings.State> {
 
   class State {
     @NonNls
-    var userId: String = "John Smith"
-    var ideaStatus: Boolean = false
+    var longitude: String = "0.0"
+    var latitude: String = "0.0"
   }
 
   private var currentState: State = State()
 
   companion object {
-    fun getInstance(): SunsetApplicationSettings {
+    fun getInstance(): SunsetSettings {
       return ApplicationManager.getApplication()
-        .getService(SunsetApplicationSettings::class.java)
+        .getService(SunsetSettings::class.java)
     }
   }
 
