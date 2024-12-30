@@ -1,37 +1,57 @@
 package com.github.hamatthias.sunset.settings
 
+import com.github.hamatthias.sunset.services.theme.ThemeGatherer
+import com.intellij.openapi.ui.ComboBox
+import com.intellij.openapi.ui.DialogPanel
 import com.intellij.ui.components.JBTextField
-import com.intellij.ui.dsl.builder.bindText
-import javax.swing.JComponent
-import javax.swing.JPanel
 import com.intellij.ui.dsl.builder.panel
+import javax.swing.JComponent
 
 /**
  * Supports creating and managing a JPanel for the Settings Dialog.
  */
 class SunsetSettingsComponent() {
 
-  private val settings : SunsetSettings = SunsetSettings.getInstance()
+  private val settings = SunsetSettings.getInstance()
+  private val themeGatherer = ThemeGatherer()
 
-  private var longitudeInput = JBTextField()
+  private val longitudeInput = JBTextField()
   private val latitudeInput = JBTextField()
+  private val dayThemeComboBox = ComboBox<String>()
+  private val nightThemeComboBox = ComboBox<String>()
 
-  fun getPanel(): JPanel {
+  fun getPanel(): DialogPanel {
+    setUpDayThemeComboBox()
+    setUpNightThemeComboBox()
     return panel {
-      row() {
-        label("Add your location: ")
-          .comment("Provide double values e.g.: 14.234342")
-      }
+      separator().rowComment("Location")
       row(SettingsBundle.setting("label.input.longitude")) {
-        textField()
-          .bindText(settings.state::longitude)
+        cell(longitudeInput)
       }
       row(SettingsBundle.setting("label.input.latitude")) {
-        textField()
-          .bindText(settings.state::latitude)
+        cell(latitudeInput)
       }
-      row {
+      separator().rowComment("Themes")
+      row(SettingsBundle.setting("label.comboBox.dayTheme")) {
+        cell(dayThemeComboBox)
       }
+      row(SettingsBundle.setting("label.comboBox.nightTheme")) {
+        cell(nightThemeComboBox)
+      }
+    }
+  }
+
+  private fun setUpDayThemeComboBox() {
+    val themeNames = themeGatherer.getThemeNames()
+    themeNames.forEach {
+      dayThemeComboBox.addItem(it)
+    }
+  }
+
+  private fun setUpNightThemeComboBox() {
+    val themeNames = themeGatherer.getThemeNames()
+    themeNames.forEach {
+      nightThemeComboBox.addItem(it)
     }
   }
 
@@ -51,8 +71,23 @@ class SunsetSettingsComponent() {
     latitudeInput.text = latitude
   }
 
+  fun getDayThemeComboBoxItem(): Any {
+    return dayThemeComboBox.selectedItem ?: "<None>"
+  }
+
+  fun setDayThemeComboBoxItem(item: String) {
+    dayThemeComboBox.selectedItem = item
+  }
+
+  fun getNightThemeComboBoxItem(): Any {
+    return nightThemeComboBox.selectedItem ?: "<None>"
+  }
+
+  fun setNightThemeComboBoxItem(item: String) {
+    nightThemeComboBox.selectedItem = item
+  }
+
   fun getPreferredFocusedComponent(): JComponent {
     return longitudeInput
   }
-
 }
