@@ -16,6 +16,8 @@ class SunsetSettings : PersistentStateComponent<SunsetSettings.State> {
     @NonNls
     var longitude: String = DEFAULT_LONGITUDE
     var latitude: String = DEFAULT_LATITUDE
+    var dayTheme: String = DEFAULT_DAY_THEME
+    var nightTheme: String = DEFAULT_NIGHT_THEME
   }
 
   private var currentState: State = State()
@@ -28,6 +30,8 @@ class SunsetSettings : PersistentStateComponent<SunsetSettings.State> {
 
     const val DEFAULT_LONGITUDE = "0.0"
     const val DEFAULT_LATITUDE = "0.0"
+    const val DEFAULT_DAY_THEME = "Light"
+    const val DEFAULT_NIGHT_THEME = "Dark"
   }
 
   override fun getState(): State {
