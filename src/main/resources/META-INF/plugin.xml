@@ -17,7 +17,7 @@
             parentId="tools"
             instance="com.github.hamatthias.sunset.settings.SunsetSettingsConfigurable"
             id="com.github.hamatthias.sunset.settings.SunsetSettingsConfigurable"
-            displayName="SDK: Application Settings example" />
+            displayName="Sunset Theme-Changer" />
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
