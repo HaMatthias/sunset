@@ -24,14 +24,14 @@ class SunsetSettingsComponent() {
     setUpDayThemeComboBox()
     setUpNightThemeComboBox()
     return panel {
-      separator().rowComment("Location")
+      separator().rowComment(SettingsBundle.setting("label.location"))
       row(SettingsBundle.setting("label.input.longitude")) {
         cell(longitudeInput)
       }
       row(SettingsBundle.setting("label.input.latitude")) {
         cell(latitudeInput)
       }
-      separator().rowComment("Themes")
+      separator().rowComment(SettingsBundle.setting("label.theme"))
       row(SettingsBundle.setting("label.comboBox.dayTheme")) {
         cell(dayThemeComboBox)
       }
