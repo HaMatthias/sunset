@@ -22,6 +22,8 @@ class SunsetSettingsConfigurable : Configurable {
     return (
         sunsetSettingsComponent.getLongitudeText() != sunsetSettingsState.longitude
         || sunsetSettingsComponent.getLatitudeText() != sunsetSettingsState.latitude
+        || sunsetSettingsComponent.getTimeToDayTheme() != sunsetSettingsState.timeToDayTheme
+        || sunsetSettingsComponent.getTimeToNightTheme() != sunsetSettingsState.timeToNightTheme
         || sunsetSettingsComponent.getDayThemeComboBoxItem() == sunsetSettingsState.dayTheme
         || sunsetSettingsComponent.getNightThemeComboBoxItem() == sunsetSettingsState.nightTheme)
   }
@@ -33,11 +35,13 @@ class SunsetSettingsConfigurable : Configurable {
     sunsetSettingsState.longitude = sunsetSettingsComponent.getLongitudeText()
     sunsetSettingsState.latitude = sunsetSettingsComponent.getLatitudeText()
 
+    // Time
+    sunsetSettingsState.timeToDayTheme = sunsetSettingsComponent.getTimeToDayTheme()
+    sunsetSettingsState.timeToNightTheme = sunsetSettingsComponent.getTimeToNightTheme()
+
     // Theme
-    val dayTheme = sunsetSettingsComponent.getDayThemeComboBoxItem()
-    sunsetSettingsState.dayTheme = if (dayTheme is String) dayTheme else "<None>"
-    val nightTheme = sunsetSettingsComponent.getNightThemeComboBoxItem()
-    sunsetSettingsState.nightTheme = if (nightTheme is String) nightTheme else "<None>"
+    sunsetSettingsState.dayTheme = sunsetSettingsComponent.getDayThemeComboBoxItem()
+    sunsetSettingsState.nightTheme = sunsetSettingsComponent.getNightThemeComboBoxItem()
   }
 
   @Nls(capitalization = Nls.Capitalization.Title)
@@ -53,6 +57,8 @@ class SunsetSettingsConfigurable : Configurable {
     val sunsetSettingsState = SunsetSettings.getInstance().state
     sunsetSettingsComponent.setLongitudeText(sunsetSettingsState.longitude)
     sunsetSettingsComponent.setLatitudeText(sunsetSettingsState.latitude)
+    sunsetSettingsComponent.setTimeToDayTheme(sunsetSettingsState.timeToDayTheme.toString())
+    sunsetSettingsComponent.setTimeToNightTheme(sunsetSettingsState.timeToNightTheme.toString())
     sunsetSettingsComponent.setDayThemeComboBoxItem(sunsetSettingsState.dayTheme)
     sunsetSettingsComponent.setNightThemeComboBoxItem(sunsetSettingsState.nightTheme)
   }
