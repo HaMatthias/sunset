@@ -3,8 +3,12 @@ package com.github.hamatthias.sunset.settings
 import com.github.hamatthias.sunset.services.theme.ThemeGatherer
 import com.intellij.openapi.ui.ComboBox
 import com.intellij.openapi.ui.DialogPanel
+import com.intellij.openapi.ui.ValidationInfo
 import com.intellij.ui.components.JBTextField
 import com.intellij.ui.dsl.builder.panel
+import com.intellij.ui.layout.ValidationInfoBuilder
+import java.time.LocalTime
+import java.time.format.DateTimeParseException
 import javax.swing.JComponent
 
 /**
@@ -12,11 +16,12 @@ import javax.swing.JComponent
  */
 class SunsetSettingsComponent() {
 
-  private val settings = SunsetSettings.getInstance()
   private val themeGatherer = ThemeGatherer()
 
   private val longitudeInput = JBTextField()
   private val latitudeInput = JBTextField()
+  private val timeToDayThemeInput = JBTextField()
+  private val timeToNightThemeInput = JBTextField()
   private val dayThemeComboBox = ComboBox<String>()
   private val nightThemeComboBox = ComboBox<String>()
 
@@ -24,12 +29,14 @@ class SunsetSettingsComponent() {
     setUpDayThemeComboBox()
     setUpNightThemeComboBox()
     return panel {
-      separator().rowComment("Location")
+      separator().rowComment("Location & Time")
       row(SettingsBundle.setting("label.input.longitude")) {
         cell(longitudeInput)
+        cell(timeToDayThemeInput).validationOnInput(::validateTimeInput).validationOnApply(::validateTimeInput)
       }
       row(SettingsBundle.setting("label.input.latitude")) {
         cell(latitudeInput)
+        cell(timeToNightThemeInput).validationOnInput(::validateTimeInput).validationOnApply(::validateTimeInput)
       }
       separator().rowComment("Themes")
       row(SettingsBundle.setting("label.comboBox.dayTheme")) {
@@ -71,23 +78,49 @@ class SunsetSettingsComponent() {
     latitudeInput.text = latitude
   }
 
-  fun getDayThemeComboBoxItem(): Any {
-    return dayThemeComboBox.selectedItem ?: "<None>"
+  fun getTimeToDayTheme(): String {
+    return timeToDayThemeInput.text
   }
 
-  fun setDayThemeComboBoxItem(item: String) {
-    dayThemeComboBox.selectedItem = item
+  fun setTimeToDayTheme(timeToDayTheme: String) {
+    timeToDayThemeInput.text = timeToDayTheme
   }
 
-  fun getNightThemeComboBoxItem(): Any {
-    return nightThemeComboBox.selectedItem ?: "<None>"
+  fun getTimeToNightTheme(): String {
+    return timeToNightThemeInput.text
   }
 
-  fun setNightThemeComboBoxItem(item: String) {
-    nightThemeComboBox.selectedItem = item
+  fun setTimeToNightTheme(timeToNightTheme: String) {
+    timeToNightThemeInput.text = timeToNightTheme
+  }
+
+  fun getDayThemeComboBoxItem(): String {
+    return dayThemeComboBox.selectedItem as String
+  }
+
+  fun setDayThemeComboBoxItem(name: String) {
+    dayThemeComboBox.selectedItem = name
+  }
+
+  fun getNightThemeComboBoxItem(): String {
+    return nightThemeComboBox.selectedItem as String
+  }
+
+  fun setNightThemeComboBoxItem(name: String) {
+    nightThemeComboBox.selectedItem = name
   }
 
   fun getPreferredFocusedComponent(): JComponent {
     return longitudeInput
+  }
+
+  private fun validateTimeInput(builder: ValidationInfoBuilder, textField: JBTextField): ValidationInfo? {
+    val time = textField.text
+    try {
+      LocalTime.parse(time)
+      return null
+    } catch (e: DateTimeParseException) {
+      return builder.error(SettingsBundle.setting("label.input.error.time"))
+    }
   }
 }

@@ -13,9 +13,19 @@ import org.jetbrains.annotations.NonNls
 class SunsetSettings : PersistentStateComponent<SunsetSettings.State> {
 
   class State {
+
+    val DEFAULT_LONGITUDE = "0.0"
+    val DEFAULT_LATITUDE = "0.0"
+    val DEFAULT_TIME_OF_DAY_THEME = "06:00"
+    val DEFAULT_TIME_OF_NIGHT_THEME = "18:00"
+    val DEFAULT_DAY_THEME = "Light"
+    val DEFAULT_NIGHT_THEME = "Dark"
+
     @NonNls
     var longitude: String = DEFAULT_LONGITUDE
     var latitude: String = DEFAULT_LATITUDE
+    var timeToDayTheme: String = DEFAULT_TIME_OF_DAY_THEME
+    var timeToNightTheme: String = DEFAULT_TIME_OF_NIGHT_THEME
     var dayTheme: String = DEFAULT_DAY_THEME
     var nightTheme: String = DEFAULT_NIGHT_THEME
   }
@@ -27,11 +37,6 @@ class SunsetSettings : PersistentStateComponent<SunsetSettings.State> {
       return ApplicationManager.getApplication()
         .getService(SunsetSettings::class.java)
     }
-
-    const val DEFAULT_LONGITUDE = "0.0"
-    const val DEFAULT_LATITUDE = "0.0"
-    const val DEFAULT_DAY_THEME = "Light"
-    const val DEFAULT_NIGHT_THEME = "Dark"
   }
 
   override fun getState(): State {
