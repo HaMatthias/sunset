@@ -24,6 +24,10 @@
         <applicationService serviceImplementation="com.github.hamatthias.sunset.settings.SunsetSettings" />
     </extensions>
 
+    <extensions defaultExtensionNs="com.intellij">
+        <postStartupActivity implementation="com.github.hamatthias.sunset.services.startup.SunsetStartupActivity" />
+    </extensions>
+
     <applicationListeners>
         <listener class="com.github.hamatthias.sunset.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
     </applicationListeners>
