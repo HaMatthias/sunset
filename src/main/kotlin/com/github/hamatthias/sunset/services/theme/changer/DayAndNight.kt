@@ -1,18 +1,19 @@
-package com.github.hamatthias.sunset.services.theme
+package com.github.hamatthias.sunset.services.theme.changer
 
+import com.github.hamatthias.sunset.services.theme.ThemeGatherer
 import com.github.hamatthias.sunset.settings.SunsetSettings
 import com.intellij.ide.ui.LafManager
 import com.intellij.ide.ui.laf.UIThemeLookAndFeelInfo
 import com.intellij.openapi.diagnostic.logger
 import java.time.LocalTime
 
-class ThemeChanger {
+class DayAndNight : ThemeChanger {
 
-  private val logger = logger<ThemeChanger>()
+  private val logger = logger<DayAndNight>()
 
   private val settings = SunsetSettings.getInstance()
 
-  fun applyTheme() {
+  override fun applyTheme() {
     val themeToApply = getTheme()
     val currentTheme = LafManager.getInstance().currentUIThemeLookAndFeel
     logger.debug("Theme to apply: {} - Current Theme: {}", themeToApply.id, currentTheme.id)
@@ -22,7 +23,7 @@ class ThemeChanger {
     }
   }
 
-  fun getNextThemeChange() : LocalTime {
+  override fun getNextThemeChange() : LocalTime {
     val timeToDayTheme = LocalTime.parse(settings.state.timeToDayTheme)
     val timeToNightTheme = LocalTime.parse(settings.state.timeToNightTheme)
     val now = LocalTime.now()
