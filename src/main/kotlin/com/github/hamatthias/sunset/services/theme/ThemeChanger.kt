@@ -13,30 +13,13 @@ class ThemeChanger {
   private val themeGatherer = ThemeGatherer()
   private val settings = SunsetSettings.getInstance()
 
-  fun switchThemeIfNeeded() {
-    val themeToApply = getThemeToApply() ?: return
+  fun applyTheme() {
+    val themeToApply = getTheme() ?: return
     val currentTheme = LafManager.getInstance().currentUIThemeLookAndFeel
     logger.debug("Theme to apply: {} - Current Theme: {}", themeToApply.id, currentTheme.id)
     if (themeToApply != currentTheme) {
       logger.info("Themes are different. Change theme to" + themeToApply.name)
       LafManager.getInstance().setCurrentLookAndFeel(themeToApply, false)
-    }
-  }
-
-  fun switchTheme() {
-    val method = "switchTheme()"
-    val currentTheme = LafManager.getInstance().currentUIThemeLookAndFeel
-    val dayTheme = themeGatherer.getThemeByName(settings.state.dayTheme)
-    val nightTheme = themeGatherer.getThemeByName(settings.state.nightTheme)
-    var nextTheme = dayTheme
-
-    if (currentTheme == dayTheme) {
-      nextTheme = nightTheme
-    }
-
-    if (nextTheme != null) {
-      logger.info(method + "to " + nextTheme.name)
-      LafManager.getInstance().setCurrentLookAndFeel(nextTheme, false)
     }
   }
 
@@ -51,23 +34,17 @@ class ThemeChanger {
     return timeToNightTheme
   }
 
-  private fun getThemeToApply() : UIThemeLookAndFeelInfo? {
+  private fun getTheme() : UIThemeLookAndFeelInfo? {
     val timeToDayTheme = LocalTime.parse(settings.state.timeToDayTheme)
     val timeToNightTheme = LocalTime.parse(settings.state.timeToNightTheme)
     val now = LocalTime.now()
 
-    var themeName = settings.state.dayTheme
-
-    if (now.isAfter(timeToDayTheme)) {
-      logger.debug("It is later than {}", timeToDayTheme)
-      if (now.isAfter(timeToNightTheme)) {
-        logger.debug("It is later than {} too. Switch to the night theme", timeToNightTheme)
-        themeName = settings.state.nightTheme
-      }
-    } else {
-      logger.debug("It is earlier than {}. Switch to night theme", timeToDayTheme)
-      themeName = settings.state.nightTheme
+    var result = settings.state.dayTheme
+    if (now.isBefore(timeToDayTheme) && now.isAfter(timeToNightTheme)) {
+      result = settings.state.nightTheme
     }
-    return themeGatherer.getThemeByName(themeName)
+
+    logger.debug("result{}", result)
+    return themeGatherer.getThemeByName(result)
   }
 }

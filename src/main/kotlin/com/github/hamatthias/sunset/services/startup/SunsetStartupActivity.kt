@@ -24,12 +24,12 @@ class SunsetStartupActivity : ProjectActivity {
     withContext(Dispatchers.EDT) {
       // Apply theme directly on startup
       val themeChanger = ThemeChanger()
-      themeChanger.switchThemeIfNeeded()
+      themeChanger.applyTheme()
 
       // Schedule the next theme change
       val service = project.service<ThemeChangerSchedulingService>()
       val changeTime = themeChanger.getNextThemeChange()
-      service.scheduleThemeChange(changeTime) { themeChanger.switchTheme() }
+      service.scheduleThemeChange(changeTime) { themeChanger.applyTheme() }
     }
   }
 }
