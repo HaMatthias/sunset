@@ -50,7 +50,7 @@ class SunsetSettingsConfigurable : Configurable {
   }
 
   override fun getPreferredFocusedComponent(): JComponent {
-    return sunsetSettingsComponent.getPreferredFocusedComponent();
+    return sunsetSettingsComponent.getPreferredFocusedComponent()
   }
 
   override fun reset() {
