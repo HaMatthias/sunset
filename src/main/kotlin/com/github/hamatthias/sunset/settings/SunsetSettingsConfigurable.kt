@@ -50,16 +50,16 @@ class SunsetSettingsConfigurable : Configurable {
   }
 
   override fun getPreferredFocusedComponent(): JComponent {
-    return sunsetSettingsComponent.getPreferredFocusedComponent();
+    return sunsetSettingsComponent.getPreferredFocusedComponent()
   }
 
   override fun reset() {
     val sunsetSettingsState = SunsetSettings.getInstance().state
-    sunsetSettingsComponent.setLongitudeText(sunsetSettingsState.longitude)
-    sunsetSettingsComponent.setLatitudeText(sunsetSettingsState.latitude)
-    sunsetSettingsComponent.setTimeToDayTheme(sunsetSettingsState.timeToDayTheme.toString())
-    sunsetSettingsComponent.setTimeToNightTheme(sunsetSettingsState.timeToNightTheme.toString())
-    sunsetSettingsComponent.setDayThemeComboBoxItem(sunsetSettingsState.dayTheme)
-    sunsetSettingsComponent.setNightThemeComboBoxItem(sunsetSettingsState.nightTheme)
+    sunsetSettingsComponent.setLongitudeText(sunsetSettingsState.DEFAULT_LONGITUDE)
+    sunsetSettingsComponent.setLatitudeText(sunsetSettingsState.DEFAULT_LATITUDE)
+    sunsetSettingsComponent.setTimeToDayTheme(sunsetSettingsState.DEFAULT_TIME_OF_DAY_THEME)
+    sunsetSettingsComponent.setTimeToNightTheme(sunsetSettingsState.DEFAULT_TIME_OF_NIGHT_THEME)
+    sunsetSettingsComponent.setDayThemeComboBoxItem(sunsetSettingsState.DEFAULT_DAY_THEME)
+    sunsetSettingsComponent.setNightThemeComboBoxItem(sunsetSettingsState.DEFAULT_NIGHT_THEME)
   }
 }
