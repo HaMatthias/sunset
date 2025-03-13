@@ -10,7 +10,7 @@ import kotlin.random.Random
 /**
  * Applies a random theme every x hours. x is randomly calculated with every theme change between 1-6 hours.
  */
-class DiceRoller : ThemeChanger {
+object DiceRoller : ThemeChanger {
 
   private val logger = logger<DiceRoller>()
 

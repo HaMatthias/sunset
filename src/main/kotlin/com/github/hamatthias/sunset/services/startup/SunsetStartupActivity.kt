@@ -1,7 +1,7 @@
 package com.github.hamatthias.sunset.services.startup
 
-import com.github.hamatthias.sunset.services.theme.changer.DayAndNight
 import com.github.hamatthias.sunset.services.theme.ThemeChangerSchedulingService
+import com.github.hamatthias.sunset.services.theme.changer.DayAndNight
 import com.github.hamatthias.sunset.services.theme.changer.ThemeChanger
 import com.intellij.openapi.application.EDT
 import com.intellij.openapi.components.service
@@ -21,7 +21,7 @@ import kotlinx.coroutines.withContext
  */
 class SunsetStartupActivity : ProjectActivity {
 
-  private var themeChanger : ThemeChanger = DayAndNight()
+  private var themeChanger : ThemeChanger = DayAndNight
 
   override suspend fun execute(project: Project) {
     withContext(Dispatchers.EDT) {

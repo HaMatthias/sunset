@@ -7,7 +7,7 @@ import com.intellij.ide.ui.laf.UIThemeLookAndFeelInfo
 import com.intellij.openapi.diagnostic.logger
 import java.time.LocalTime
 
-class DayAndNight : ThemeChanger {
+object DayAndNight : ThemeChanger {
 
   private val logger = logger<DayAndNight>()
 
