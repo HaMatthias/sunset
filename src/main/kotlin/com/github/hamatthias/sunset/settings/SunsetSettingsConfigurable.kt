@@ -46,7 +46,7 @@ class SunsetSettingsConfigurable : Configurable {
 
   @Nls(capitalization = Nls.Capitalization.Title)
   override fun getDisplayName(): String {
-    return "Sunset Settings"
+    return SettingsBundle.setting("label.panel.settings")
   }
 
   override fun getPreferredFocusedComponent(): JComponent {
