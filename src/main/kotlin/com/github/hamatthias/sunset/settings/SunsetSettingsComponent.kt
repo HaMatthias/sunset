@@ -29,7 +29,7 @@ class SunsetSettingsComponent() {
     setUpDayThemeComboBox()
     setUpNightThemeComboBox()
     return panel {
-      separator().rowComment("Location & Time")
+      separator().rowComment(SettingsBundle.setting("label.row.location_and_time"))
       row(SettingsBundle.setting("label.input.longitude")) {
         cell(longitudeInput)
         cell(timeToDayThemeInput).validationOnInput(::validateTimeInput).validationOnApply(::validateTimeInput)
@@ -38,7 +38,7 @@ class SunsetSettingsComponent() {
         cell(latitudeInput)
         cell(timeToNightThemeInput).validationOnInput(::validateTimeInput).validationOnApply(::validateTimeInput)
       }
-      separator().rowComment("Themes")
+      separator().rowComment(SettingsBundle.setting("label.row.theme"))
       row(SettingsBundle.setting("label.comboBox.dayTheme")) {
         cell(dayThemeComboBox)
       }
