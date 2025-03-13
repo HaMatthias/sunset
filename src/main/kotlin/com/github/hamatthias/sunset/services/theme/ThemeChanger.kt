@@ -13,9 +13,6 @@ class ThemeChanger {
   private val themeGatherer = ThemeGatherer()
   private val settings = SunsetSettings.getInstance()
 
-  private var timer: Timer? = null
-  private val transitionStep = 10
-
   fun switchThemeIfNeeded() {
     val themeToApply = getThemeToApply() ?: return
     val currentTheme = LafManager.getInstance().currentUIThemeLookAndFeel
