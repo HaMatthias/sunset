@@ -40,7 +40,7 @@ object DayAndNight : ThemeChanger {
     val now = LocalTime.now()
 
     var result = settings.state.dayTheme
-    if (now.isBefore(timeToDayTheme) && now.isAfter(timeToNightTheme)) {
+    if (now.isBefore(timeToDayTheme) || now.isAfter(timeToNightTheme)) {
       result = settings.state.nightTheme
     }
 
