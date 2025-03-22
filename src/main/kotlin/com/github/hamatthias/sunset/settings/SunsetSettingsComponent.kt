@@ -16,8 +16,6 @@ import javax.swing.JComponent
  */
 class SunsetSettingsComponent() {
 
-  private val themeGatherer = ThemeGatherer()
-
   private val longitudeInput = JBTextField()
   private val latitudeInput = JBTextField()
   private val timeToDayThemeInput = JBTextField()
@@ -49,14 +47,14 @@ class SunsetSettingsComponent() {
   }
 
   private fun setUpDayThemeComboBox() {
-    val themeNames = themeGatherer.getThemeNames()
+    val themeNames = ThemeGatherer.getThemeNames()
     themeNames.forEach {
       dayThemeComboBox.addItem(it)
     }
   }
 
   private fun setUpNightThemeComboBox() {
-    val themeNames = themeGatherer.getThemeNames()
+    val themeNames = ThemeGatherer.getThemeNames()
     themeNames.forEach {
       nightThemeComboBox.addItem(it)
     }

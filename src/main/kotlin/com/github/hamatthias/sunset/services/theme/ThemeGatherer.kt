@@ -2,20 +2,18 @@ package com.github.hamatthias.sunset.services.theme
 
 import com.intellij.ide.ui.LafManager
 import com.intellij.ide.ui.laf.UIThemeLookAndFeelInfo
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.toImmutableList
 
 @Suppress("UnstableApiUsage")
-class ThemeGatherer {
+object ThemeGatherer {
 
-  private val themes = LafManager.getInstance().installedThemes.toImmutableList()
+  private val themes : Sequence<UIThemeLookAndFeelInfo> = LafManager.getInstance().installedThemes
 
-  fun getThemeByName(name: String): UIThemeLookAndFeelInfo? {
-    return themes.find { it.name == name }
+  fun getThemeByName(name: String?): UIThemeLookAndFeelInfo {
+    return themes.find { it.name == name } ?: LafManager.getInstance().currentUIThemeLookAndFeel
   }
 
-  fun getThemeNames(): ImmutableList<String> {
+  fun getThemeNames(): Sequence<String> {
     themes.map { it.id }
-    return themes.map { theme -> theme.name }.toImmutableList()
+    return themes.map { it.name }
   }
 }
