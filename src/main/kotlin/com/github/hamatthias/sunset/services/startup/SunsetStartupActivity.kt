@@ -24,13 +24,15 @@ class SunsetStartupActivity : ProjectActivity {
   private var themeChanger : ThemeChanger = DayAndNight
 
   override suspend fun execute(project: Project) {
+
+    // Execute next theme change
     withContext(Dispatchers.EDT) {
       themeChanger.applyTheme()
-
-      // Schedule the next theme change
-      val service = project.service<ThemeChangerSchedulingService>()
-      val changeTime = themeChanger.getNextThemeChange()
-      service.scheduleThemeChange(changeTime) { themeChanger.applyTheme() }
     }
+
+    // Schedule the next theme change
+    val service = project.service<ThemeChangerSchedulingService>()
+    val changeTime = themeChanger.getNextThemeChange()
+    service.scheduleThemeChange(changeTime) { themeChanger.applyTheme() }
   }
 }

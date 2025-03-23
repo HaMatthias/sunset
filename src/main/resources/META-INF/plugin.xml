@@ -1,23 +1,19 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.hamatthias.sunset</id>
-    <name>sunset</name>
+    <name>Sunset</name>
     <vendor>hamatthias</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
-
-    <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.hamatthias.sunset.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-    </extensions>
+    <resource-bundle>settings.labels</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationConfigurable
             parentId="tools"
             instance="com.github.hamatthias.sunset.settings.SunsetSettingsConfigurable"
             id="com.github.hamatthias.sunset.settings.SunsetSettingsConfigurable"
-            displayName="Sunset Theme-Changer" />
+            displayName="Sunset" />
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
@@ -27,8 +23,4 @@
     <extensions defaultExtensionNs="com.intellij">
         <postStartupActivity implementation="com.github.hamatthias.sunset.services.startup.SunsetStartupActivity" />
     </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.hamatthias.sunset.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
 </idea-plugin>
