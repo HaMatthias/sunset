@@ -1,49 +1,40 @@
 package com.github.hamatthias.sunset.settings
 
+import com.github.hamatthias.sunset.services.theme.changer.ThemeChangingStrategies
 import com.intellij.openapi.application.ApplicationManager
-import com.intellij.openapi.components.PersistentStateComponent
-import com.intellij.openapi.components.State
-import com.intellij.openapi.components.Storage
-import org.jetbrains.annotations.NonNls
+import com.intellij.openapi.components.*
 
+@Service(Service.Level.APP)
 @State(
-  name = "com.github.hamatthias.sunset.settings.SunsetApplicationSettings",
+  name = "com.github.hamatthias.sunset.settings.SunsetSettings",
   storages = [Storage("SdkSettingsPlugin.xml")]
 )
-class SunsetSettings : PersistentStateComponent<SunsetSettings.State> {
+class SunsetSettings : SimplePersistentStateComponent<SunsetSettings.State>(State()) {
 
-  class State {
+  class State : BaseState() {
+    // Strategy
+    var strategy by enum(ThemeChangingStrategies.DAY_AND_NIGHT)
 
-    val DEFAULT_LONGITUDE = "0.0"
-    val DEFAULT_LATITUDE = "0.0"
-    val DEFAULT_TIME_OF_DAY_THEME = "06:00"
-    val DEFAULT_TIME_OF_NIGHT_THEME = "18:00"
-    val DEFAULT_DAY_THEME = "Light"
-    val DEFAULT_NIGHT_THEME = "Dark"
+    // Location
+    var longitude by string("0.0")
+    var latitude by string("0.0")
 
-    @NonNls
-    var longitude: String = DEFAULT_LONGITUDE
-    var latitude: String = DEFAULT_LATITUDE
-    var timeToDayTheme: String = DEFAULT_TIME_OF_DAY_THEME
-    var timeToNightTheme: String = DEFAULT_TIME_OF_NIGHT_THEME
-    var dayTheme: String = DEFAULT_DAY_THEME
-    var nightTheme: String = DEFAULT_NIGHT_THEME
+    // Time
+    var timeToDayTheme by string("06:00")
+    var timeToNightTheme by string("18:00")
+
+    // Random
+    var randomEdgeInterval by property(3)
+
+    // Theme
+    var dayTheme by string("Light")
+    var nightTheme by string("Dark")
   }
-
-  private var currentState: State = State()
 
   companion object {
     fun getInstance(): SunsetSettings {
       return ApplicationManager.getApplication()
         .getService(SunsetSettings::class.java)
     }
-  }
-
-  override fun getState(): State {
-    return currentState
-  }
-
-  override fun loadState(state: State) {
-    currentState = state
   }
 }

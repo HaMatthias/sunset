@@ -2,7 +2,6 @@ package com.github.hamatthias.sunset.services.theme
 
 import com.intellij.openapi.application.EDT
 import com.intellij.openapi.components.Service
-import com.intellij.openapi.project.Project
 import kotlinx.coroutines.*
 import java.time.Duration
 import java.time.LocalTime
@@ -15,7 +14,6 @@ import java.time.LocalTime
  */
 @Service(Service.Level.PROJECT)
 class ThemeChangerSchedulingService(
-  private val project: Project,
   private val cs: CoroutineScope
 ) {
 

@@ -6,14 +6,13 @@ import com.intellij.ide.ui.laf.UIThemeLookAndFeelInfo
 @Suppress("UnstableApiUsage")
 object ThemeGatherer {
 
-  private val themes : Sequence<UIThemeLookAndFeelInfo> = LafManager.getInstance().installedThemes
+  private val themes = LafManager.getInstance().installedThemes
 
   fun getThemeByName(name: String?): UIThemeLookAndFeelInfo {
     return themes.find { it.name == name } ?: LafManager.getInstance().currentUIThemeLookAndFeel
   }
 
-  fun getThemeNames(): Sequence<String> {
-    themes.map { it.id }
-    return themes.map { it.name }
+  fun getThemeNames(): List<String> {
+    return themes.map { it.name }.toList()
   }
 }
