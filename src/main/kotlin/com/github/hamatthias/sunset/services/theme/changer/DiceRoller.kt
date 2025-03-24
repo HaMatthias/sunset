@@ -19,7 +19,8 @@ object DiceRoller : ThemeChanger {
     val nextTheme = ThemeGatherer.getThemeByName(random)
 
     logger.debug("old theme={}, next theme={}", current, nextTheme)
-    LafManager.getInstance().setCurrentLookAndFeel(nextTheme, false)
+    LafManager.getInstance().currentUIThemeLookAndFeel = nextTheme
+    LafManager.getInstance().updateUI()
   }
 
   override fun getNextThemeChange() : LocalTime {
