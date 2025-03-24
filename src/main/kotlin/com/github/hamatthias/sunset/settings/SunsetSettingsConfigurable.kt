@@ -76,8 +76,8 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
       row(SettingsBundle.setting("label.input.edgeInterval")) {
         textField()
           .bindIntText(sunsetSettingsState::randomEdgeInterval)
-          .validationOnInput(::validateRandomInput)
-          .validationOnApply(::validateRandomInput)
+          .validationOnInput(::validateNumberInput)
+          .validationOnApply(::validateNumberInput)
       }
 
       // Theme settings
@@ -128,7 +128,7 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
     }
   }
 
-  private fun validateRandomInput(builder: ValidationInfoBuilder, textField: JBTextField): ValidationInfo? {
+  private fun validateNumberInput(builder: ValidationInfoBuilder, textField: JBTextField): ValidationInfo? {
     val number = textField.text
     val parsedNumber: Int
 
