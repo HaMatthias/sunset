@@ -19,7 +19,8 @@ object DayAndNight : ThemeChanger {
     logger.debug("Theme to apply: {} - Current Theme: {}", themeToApply.id, currentTheme.id)
     if (themeToApply != currentTheme) {
       logger.info("Themes are different. Change theme to" + themeToApply.name)
-      LafManager.getInstance().setCurrentLookAndFeel(themeToApply, false)
+      LafManager.getInstance().currentUIThemeLookAndFeel = themeToApply
+      LafManager.getInstance().updateUI()
     }
   }
 
