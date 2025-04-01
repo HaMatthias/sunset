@@ -12,7 +12,7 @@ import java.time.LocalTime
  * fdsjgsghaslghsgfdf
  * dfdfdsffd
  */
-@Service(Service.Level.PROJECT)
+@Service
 class ThemeChangerSchedulingService(
   private val cs: CoroutineScope
 ) {
@@ -21,6 +21,7 @@ class ThemeChangerSchedulingService(
   private lateinit var themeChangeJob : Job
 
   fun scheduleThemeChange(executionTime: LocalTime, themeChangeTask: () -> Unit) {
+
     val now = LocalTime.now()
     if (executionTime.isAfter(now)) {
       val delay = Duration.between(now, executionTime).toMillis()
