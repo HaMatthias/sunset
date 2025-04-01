@@ -21,6 +21,9 @@ object DayAndNight : ThemeChanger {
       LafManager.getInstance().currentUIThemeLookAndFeel = themeToApply
       LafManager.getInstance().updateUI()
     }
+
+    // And now schedule the next theme change
+    scheduleNextThemeChange()
   }
 
   override fun getNextThemeChange() : LocalTime {
