@@ -18,7 +18,7 @@ object DiceRoller : ThemeChanger {
     val random = ThemeGatherer.getThemeNames().toList().randomOrNull()
     val nextTheme = ThemeGatherer.getThemeByName(random)
 
-    logger.debug("old theme={}, next theme={}", current, nextTheme)
+    logger.debug("old theme=$current, next theme=$nextTheme")
     LafManager.getInstance().currentUIThemeLookAndFeel = nextTheme
     LafManager.getInstance().updateUI()
   }
