@@ -21,6 +21,9 @@ object DiceRoller : ThemeChanger {
     logger.debug("old theme=$current, next theme=$nextTheme")
     LafManager.getInstance().currentUIThemeLookAndFeel = nextTheme
     LafManager.getInstance().updateUI()
+
+    // And now schedule next theme change
+    scheduleNextThemeChange()
   }
 
   override fun getNextThemeChange() : LocalTime {
