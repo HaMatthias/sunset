@@ -14,7 +14,7 @@ object DayAndNight : ThemeChanger {
   private val settings = SunsetSettings.getInstance()
 
   override fun applyTheme() {
-    val themeToApply = getTheme()
+    val themeToApply = getNextTheme()
     val currentTheme = LafManager.getInstance().currentUIThemeLookAndFeel
     logger.debug("Theme to apply: ${themeToApply.id} - Current Theme: ${currentTheme.id}")
     if (themeToApply != currentTheme) {
@@ -35,7 +35,7 @@ object DayAndNight : ThemeChanger {
     return timeToNightTheme
   }
 
-  private fun getTheme() : UIThemeLookAndFeelInfo {
+  override fun getNextTheme(): UIThemeLookAndFeelInfo {
     val timeToDayTheme = LocalTime.parse(settings.state.timeToDayTheme)
     val timeToNightTheme = LocalTime.parse(settings.state.timeToNightTheme)
     val now = LocalTime.now()
