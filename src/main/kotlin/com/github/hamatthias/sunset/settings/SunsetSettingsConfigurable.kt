@@ -2,6 +2,7 @@ package com.github.hamatthias.sunset.settings
 
 import com.github.hamatthias.sunset.services.theme.ThemeGatherer
 import com.github.hamatthias.sunset.services.theme.changer.ThemeChangingStrategies
+import com.intellij.openapi.components.service
 import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.options.BoundSearchableConfigurable
 import com.intellij.openapi.ui.DialogPanel
@@ -27,9 +28,9 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
 ) {
 
   private val logger = logger<SunsetSettingsConfigurable>()
-  private val sunsetSettingsState = SunsetSettings.getInstance().state
 
   override fun createPanel(): DialogPanel {
+    val sunsetSettingsState = service<SunsetSettings>().state
     return panel {
 
       // Strategy
@@ -95,6 +96,7 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
   }
 
   override fun apply() {
+    val sunsetSettingsState = service<SunsetSettings>().state
     sunsetSettingsState.apply {
       super.apply()
     }
