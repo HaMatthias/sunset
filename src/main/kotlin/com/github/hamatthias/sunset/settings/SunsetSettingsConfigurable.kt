@@ -99,6 +99,9 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
     val sunsetSettingsState = service<SunsetSettings>().state
     sunsetSettingsState.apply {
       super.apply()
+      val strategy = sunsetSettingsState.strategy.strategyImplementation
+      strategy.applyTheme()
+      strategy.scheduleNextThemeChange()
     }
   }
 
