@@ -16,9 +16,9 @@ object DayAndNight : ThemeChanger {
   override fun applyTheme() {
     val themeToApply = getTheme()
     val currentTheme = LafManager.getInstance().currentUIThemeLookAndFeel
-    logger.debug("Theme to apply: {} - Current Theme: {}", themeToApply.id, currentTheme.id)
+    logger.debug("Theme to apply: ${themeToApply.id} - Current Theme: ${currentTheme.id}")
     if (themeToApply != currentTheme) {
-      logger.info("Themes are different. Change theme to" + themeToApply.name)
+      logger.info("Themes are different. Change theme to ${themeToApply.name}")
       LafManager.getInstance().currentUIThemeLookAndFeel = themeToApply
       LafManager.getInstance().updateUI()
     }
@@ -45,7 +45,7 @@ object DayAndNight : ThemeChanger {
       result = settings.state.nightTheme
     }
 
-    logger.debug("result{}", result)
+    logger.debug("result: $result")
     return ThemeGatherer.getThemeByName(result)
   }
 }

@@ -3,7 +3,6 @@ package com.github.hamatthias.sunset.services.theme
 import com.intellij.ide.ui.LafManager
 import com.intellij.ide.ui.laf.UIThemeLookAndFeelInfo
 
-@Suppress("UnstableApiUsage")
 object ThemeGatherer {
 
   private val themes = LafManager.getInstance().installedThemes
