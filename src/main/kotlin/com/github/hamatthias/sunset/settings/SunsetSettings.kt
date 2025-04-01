@@ -4,7 +4,7 @@ import com.github.hamatthias.sunset.services.theme.changer.ThemeChangingStrategi
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.*
 
-@Service(Service.Level.APP)
+@Service
 @State(
   name = "com.github.hamatthias.sunset.settings.SunsetSettings",
   storages = [Storage("SdkSettingsPlugin.xml")]
