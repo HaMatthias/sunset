@@ -1,7 +1,6 @@
 package com.github.hamatthias.sunset.settings
 
 import com.github.hamatthias.sunset.services.theme.changer.ThemeChangingStrategies
-import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.*
 
 @Service
@@ -29,12 +28,5 @@ class SunsetSettings : SimplePersistentStateComponent<SunsetSettings.State>(Stat
     // Theme
     var dayTheme by string("Light")
     var nightTheme by string("Dark")
-  }
-
-  companion object {
-    fun getInstance(): SunsetSettings {
-      return ApplicationManager.getApplication()
-        .getService(SunsetSettings::class.java)
-    }
   }
 }
