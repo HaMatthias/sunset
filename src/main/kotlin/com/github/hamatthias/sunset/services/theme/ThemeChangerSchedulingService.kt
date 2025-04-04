@@ -22,6 +22,10 @@ class ThemeChangerSchedulingService(
 
   fun scheduleThemeChange(executionTime: LocalTime, themeChangeTask: () -> Unit) {
 
+    if (::themeChangeJob.isInitialized) {
+      themeChangeJob.cancel()
+    }
+
     val now = LocalTime.now()
     if (executionTime.isAfter(now)) {
       val delay = Duration.between(now, executionTime).toMillis()
