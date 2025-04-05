@@ -6,6 +6,8 @@ import com.intellij.ide.ui.LafManager
 import com.intellij.ide.ui.laf.UIThemeLookAndFeelInfo
 import com.intellij.openapi.components.service
 import com.intellij.openapi.diagnostic.logger
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
 
 object DayAndNight : ThemeChanger {
@@ -13,7 +15,7 @@ object DayAndNight : ThemeChanger {
   private val logger = logger<DayAndNight>()
 
   override fun applyTheme() {
-    val themeToApply = getNextTheme()
+    val themeToApply = getThemeToApply()
     val currentTheme = LafManager.getInstance().currentUIThemeLookAndFeel
     logger.debug("Theme to apply: ${themeToApply.id} - Current Theme: ${currentTheme.id}")
     if (themeToApply != currentTheme) {
@@ -26,19 +28,20 @@ object DayAndNight : ThemeChanger {
     scheduleNextThemeChange()
   }
 
-  override fun getNextThemeChange() : LocalTime {
+  override fun getNextThemeChange(): LocalDateTime {
     val settings = service<SunsetSettings>()
+    val nowDate = LocalTime.now()
     val timeToDayTheme = LocalTime.parse(settings.state.timeToDayTheme)
     val timeToNightTheme = LocalTime.parse(settings.state.timeToNightTheme)
-    val now = LocalTime.now()
 
-    if (timeToDayTheme.isAfter(now)) {
-      return timeToDayTheme
+    if (timeToDayTheme.isAfter(nowDate)) {
+      return LocalDateTime.of(LocalDate.now(), timeToDayTheme)
     }
-    return timeToNightTheme
+
+    return LocalDateTime.of(LocalDate.now(), timeToNightTheme)
   }
 
-  override fun getNextTheme(): UIThemeLookAndFeelInfo {
+  override fun getThemeToApply(): UIThemeLookAndFeelInfo {
     val settings = service<SunsetSettings>()
     val timeToDayTheme = LocalTime.parse(settings.state.timeToDayTheme)
     val timeToNightTheme = LocalTime.parse(settings.state.timeToNightTheme)

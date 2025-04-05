@@ -1,10 +1,10 @@
 package com.github.hamatthias.sunset.services.theme.changer
 
-import com.github.hamatthias.sunset.services.theme.ThemeChangerSchedulingService
+import com.github.hamatthias.sunset.services.theme.Scheduler
 import com.intellij.ide.ui.laf.UIThemeLookAndFeelInfo
 import com.intellij.openapi.components.service
 import com.intellij.openapi.diagnostic.logger
-import java.time.LocalTime
+import java.time.LocalDateTime
 
 /**
  * Theme changer interface to be applied for all strategies used for changing the themes
@@ -13,13 +13,13 @@ interface ThemeChanger {
 
   fun applyTheme()
 
-  fun getNextThemeChange(): LocalTime
+  fun getNextThemeChange(): LocalDateTime
 
-  fun getNextTheme(): UIThemeLookAndFeelInfo
+  fun getThemeToApply(): UIThemeLookAndFeelInfo
 
   fun scheduleNextThemeChange() {
     val logger = logger<ThemeChanger>()
-    val service = service<ThemeChangerSchedulingService>()
+    val service = service<Scheduler>()
     val nextThemeChange = getNextThemeChange()
     logger.info("Next theme change will be scheduled at: $nextThemeChange")
 

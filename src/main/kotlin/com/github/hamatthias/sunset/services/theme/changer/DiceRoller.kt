@@ -4,7 +4,7 @@ import com.github.hamatthias.sunset.services.theme.ThemeGatherer
 import com.intellij.ide.ui.LafManager
 import com.intellij.ide.ui.laf.UIThemeLookAndFeelInfo
 import com.intellij.openapi.diagnostic.logger
-import java.time.LocalTime
+import java.time.LocalDateTime
 import kotlin.random.Random
 
 /**
@@ -16,7 +16,7 @@ object DiceRoller : ThemeChanger {
 
   override fun applyTheme() {
     val current = LafManager.getInstance().currentUIThemeLookAndFeel
-    val nextTheme = getNextTheme()
+    val nextTheme = getThemeToApply()
 
     logger.debug("old theme=$current, next theme=$nextTheme")
     LafManager.getInstance().currentUIThemeLookAndFeel = nextTheme
@@ -26,12 +26,12 @@ object DiceRoller : ThemeChanger {
     scheduleNextThemeChange()
   }
 
-  override fun getNextThemeChange() : LocalTime {
+  override fun getNextThemeChange(): LocalDateTime {
     val hoursToAdd = Random.nextInt(1, 7)
-    return LocalTime.now().plusHours(hoursToAdd.toLong())
+    return LocalDateTime.now().plusHours(hoursToAdd.toLong())
   }
 
-  override fun getNextTheme(): UIThemeLookAndFeelInfo {
+  override fun getThemeToApply(): UIThemeLookAndFeelInfo {
     val random = ThemeGatherer.getThemeNames().toList().randomOrNull()
     return ThemeGatherer.getThemeByName(random)
   }
