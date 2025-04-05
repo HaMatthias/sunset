@@ -19,7 +19,7 @@ interface ThemeChanger {
 
   fun scheduleNextThemeChange() {
     val logger = logger<ThemeChanger>()
-    val service = service<ThemeChangerSchedulingService>()
+    val service = service<Scheduler>()
     val nextThemeChange = getNextThemeChange()
     logger.info("Next theme change will be scheduled at: $nextThemeChange")
 
