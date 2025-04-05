@@ -13,7 +13,7 @@ interface ThemeChanger {
 
   fun applyTheme()
 
-  fun getNextThemeChange(): LocalTime
+  fun getNextThemeChange(): LocalDateTime
 
   fun getNextTheme(): UIThemeLookAndFeelInfo
 
