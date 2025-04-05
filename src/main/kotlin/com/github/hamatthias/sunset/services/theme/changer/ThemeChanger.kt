@@ -15,7 +15,7 @@ interface ThemeChanger {
 
   fun getNextThemeChange(): LocalDateTime
 
-  fun getNextTheme(): UIThemeLookAndFeelInfo
+  fun getThemeToApply(): UIThemeLookAndFeelInfo
 
   fun scheduleNextThemeChange() {
     val logger = logger<ThemeChanger>()
