@@ -14,9 +14,20 @@ class SunsetSettings : SimplePersistentStateComponent<SunsetSettings.State>(Stat
     // Strategy
     var strategy by enum(ThemeChangingStrategies.DAY_AND_NIGHT)
 
-    // Location
-    var longitude by string("0.0")
-    var latitude by string("0.0")
+    // Location (With workaround for avoiding nullability)
+    private var _longitude by string("0.0")
+    var longitude: String
+      get() = _longitude ?: "0.0"
+      set(value) {
+        _longitude = value
+      }
+
+    private var _latitude by string("0.0")
+    var latitude: String
+      get() = _latitude ?: "0.0"
+      set(value) {
+        _latitude = value
+      }
 
     // Time
     var timeToDayTheme by string("06:00")

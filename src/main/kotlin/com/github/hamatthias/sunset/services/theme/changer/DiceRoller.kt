@@ -28,7 +28,7 @@ object DiceRoller : ThemeChanger {
 
   override fun getNextThemeChange(): LocalDateTime {
     val hoursToAdd = Random.nextInt(1, 7)
-    return LocalTime.now().plusHours(hoursToAdd.toLong())
+    return LocalDateTime.now().plusHours(hoursToAdd.toLong())
   }
 
   override fun getThemeToApply(): UIThemeLookAndFeelInfo {
