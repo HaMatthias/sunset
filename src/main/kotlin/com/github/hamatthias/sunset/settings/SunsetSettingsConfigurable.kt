@@ -46,13 +46,13 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
       separator().rowComment(SettingsBundle.setting("label.row.location"))
       row(SettingsBundle.setting("label.input.longitude")) {
         textField()
-          .bindText({ sunsetSettingsState.longitude.toString() }, {sunsetSettingsState.longitude = it})
+          .bindText({ sunsetSettingsState.longitude }, {sunsetSettingsState.longitude = it})
           .validationOnInput(::validateDecimalInput)
           .validationOnApply(::validateDecimalInput)
       }
       row(SettingsBundle.setting("label.input.latitude")) {
         textField()
-          .bindText({ sunsetSettingsState.latitude.toString() }, {sunsetSettingsState.latitude = it})
+          .bindText({ sunsetSettingsState.latitude }, {sunsetSettingsState.latitude = it})
           .validationOnInput(::validateDecimalInput)
           .validationOnApply(::validateDecimalInput)
       }
