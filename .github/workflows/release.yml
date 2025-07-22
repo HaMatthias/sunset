@@ -61,7 +61,7 @@ jobs:
       - name: Publish Plugin
         env:
           PUBLISH_TOKEN: ${{ secrets.INTELLIJ_PLATFORM_PUBLISHING_TOKEN }}
-          CERTIFICATE_CHAIN: ${{ secrets.CERTIFICATE_CHAIN }}
+          CERTIFICATE_CHAIN: ${{ secrets.INTELLIJ_PLUGIN_SIGNING_CERTIFICATE_CHAIN }}
           PRIVATE_KEY: ${{ secrets.INTELLIJ_PLUGIN_SIGNING_PRIVATE_KEY }}
           PRIVATE_KEY_PASSWORD: ${{ secrets.INTELLIJ_PLUGIN_SIGNING_PRIVATE_KEY_PASSWORD }}
         run: ./gradlew publishPlugin
