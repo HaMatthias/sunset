@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Added
 - Added tooltip for the random strategy in the settings page.
+- Allow to backup and sync the settings
 
 ### Fixed
 - Immediate theme change when installing the plugin. Instead the current installed theme is set as default
