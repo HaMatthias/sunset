@@ -2,6 +2,8 @@ package com.github.hamatthias.sunset.settings
 
 import com.github.hamatthias.sunset.services.theme.ThemeGatherer
 import com.github.hamatthias.sunset.services.theme.changer.ThemeChangingStrategies
+import com.intellij.icons.AllIcons
+import com.intellij.ide.HelpTooltip
 import com.intellij.openapi.components.service
 import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.options.BoundSearchableConfigurable
@@ -79,6 +81,12 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
           .bindIntText(sunsetSettingsState::randomEdgeInterval)
           .validationOnInput(::validateNumberInput)
           .validationOnApply(::validateNumberInput)
+
+        val icon = icon(AllIcons.General.ContextHelp)
+        HelpTooltip()
+          .setTitle(SettingsBundle.setting("tooltip.random.title"))
+          .setDescription(SettingsBundle.setting("tooltip.random.description"))
+          .installOn(icon.component)
       }
 
       // Theme settings
@@ -144,8 +152,8 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
       return builder.error(SettingsBundle.setting("input.error.random.value"))
     }
 
-    if (parsedNumber > 24) {
-      logger.info("Random number too long: $number")
+    if (parsedNumber > 24 || parsedNumber < 1) {
+      logger.info("Random factor out of range: $number")
       return builder.error(SettingsBundle.setting("input.error.random.tooLarge"))
     }
 
