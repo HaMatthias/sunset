@@ -17,9 +17,4 @@ object SettingsBundle {
   fun setting(key: @PropertyKey(resourceBundle = BUNDLE) String, vararg params: Any) : @Nls String {
       return instance.getMessage(key, *params)
   }
-
-  @JvmStatic
-  fun lazySetting(@PropertyKey(resourceBundle = BUNDLE) key : String, vararg params: Any) : Supplier<@Nls String> {
-    return instance.getLazyMessage(key, *params)
-  }
 }
