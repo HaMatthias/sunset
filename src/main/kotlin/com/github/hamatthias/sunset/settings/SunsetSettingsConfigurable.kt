@@ -118,7 +118,7 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
     try {
       LocalTime.parse(time)
       return null
-    } catch (e: DateTimeParseException) {
+    } catch (_: DateTimeParseException) {
       logger.info("Invalid time entered: $time")
       return builder.error(SettingsBundle.setting("input.error.time"))
     }
@@ -135,7 +135,7 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
     try {
       decimal.toFloat()
       return null
-    } catch (e: NumberFormatException) {
+    } catch (_: NumberFormatException) {
       logger.info("Invalid decimal number entered: $decimal")
       return builder.error(SettingsBundle.setting("input.error.decimal.value"))
     }
@@ -147,7 +147,7 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
 
     try {
       parsedNumber = number.toInt()
-    } catch (e: NumberFormatException) {
+    } catch (_: NumberFormatException) {
       logger.info("Invalid random number entered: $number")
       return builder.error(SettingsBundle.setting("input.error.random.value"))
     }

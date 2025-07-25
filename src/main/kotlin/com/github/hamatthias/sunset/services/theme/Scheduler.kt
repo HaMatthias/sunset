@@ -6,12 +6,6 @@ import kotlinx.coroutines.*
 import java.time.Duration
 import java.time.LocalDateTime
 
-/**
- * Launches a [CoroutineScope] to change a theme at a specific time.
- *
- * fdsjgsghaslghsgfdf
- * dfdfdsffd
- */
 @Service
 class Scheduler(
   private val cs: CoroutineScope
