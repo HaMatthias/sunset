@@ -7,7 +7,11 @@ import com.intellij.openapi.components.*
 @Service
 @State(
   name = "com.github.hamatthias.sunset.settings.SunsetSettings",
-  storages = [Storage("SdkSettingsPlugin.xml")]
+  storages = [Storage(
+    "SdkSettingsPlugin.xml",
+    roamingType = RoamingType.DEFAULT
+  )],
+  category = SettingsCategory.UI
 )
 class SunsetSettings : SimplePersistentStateComponent<SunsetSettings.State>(State()) {
 
