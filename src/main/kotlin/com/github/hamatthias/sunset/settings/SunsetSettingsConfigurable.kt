@@ -44,8 +44,8 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
         ).bindItem(sunsetSettingsState::strategy.toNullableProperty())
       }
 
-      // Location
-      separator().rowComment(SettingsBundle.setting("label.row.location"))
+      // Solar Event
+      separator().rowComment(SettingsBundle.setting("label.row.solarevent"))
       row(SettingsBundle.setting("label.input.longitude")) {
         textField()
           .bindText({ sunsetSettingsState.longitude }, {sunsetSettingsState.longitude = it})

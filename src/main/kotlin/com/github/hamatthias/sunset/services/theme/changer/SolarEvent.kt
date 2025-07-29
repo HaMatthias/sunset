@@ -12,12 +12,11 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toJavaLocalDateTime
 import kotlinx.datetime.toLocalDateTime
-import org.jetbrains.annotations.ApiStatus
 import java.time.LocalDateTime
 
-object Location : ThemeChanger {
+object SolarEvent : ThemeChanger {
 
-  private val logger = logger<Location>()
+  private val logger = logger<com.github.hamatthias.sunset.services.theme.changer.SolarEvent>()
 
   override fun applyTheme() {
     val themeToApply = getThemeToApply()

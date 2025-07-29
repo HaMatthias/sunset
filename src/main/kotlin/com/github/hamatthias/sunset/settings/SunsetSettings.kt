@@ -19,7 +19,7 @@ class SunsetSettings : SimplePersistentStateComponent<SunsetSettings.State>(Stat
     // Strategy
     var strategy by enum(ThemeChangingStrategies.DAY_AND_NIGHT)
 
-    // Location (With workaround for avoiding nullability)
+    // Solar Event (With workaround for avoiding nullability)
     private var _longitude by string("0.0")
     var longitude: String
       get() = _longitude ?: "0.0"
