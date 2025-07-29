@@ -5,10 +5,11 @@
 ## [Unreleased]
 ### Added
 - Added tooltip for the random strategy in the settings page.
-- Allow to backup and sync the settings
+- Allow to back up and sync the settings
+- Added updates from IntelliJ Platform Plugin Template repository
 
 ### Fixed
-- Immediate theme change when installing the plugin. Instead the current installed theme is set as default
+- Immediate theme change when installing the plugin. Instead, the current installed theme is set as default
 
 ## [0.0.3] - 2025-07-22
 
