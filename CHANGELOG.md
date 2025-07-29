@@ -11,6 +11,9 @@
 ### Fixed
 - Immediate theme change when installing the plugin. Instead, the current installed theme is set as default
 
+### Changed
+- Rename the location strategy to solar event strategy
+
 ## [0.0.3] - 2025-07-22
 
 ### Added
