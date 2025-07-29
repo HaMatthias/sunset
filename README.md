@@ -2,7 +2,7 @@
 
 <!-- Plugin description -->
 Adds the functionality to change between desired themes for one of the following strategies:
-- **Location**: Provide a location by specifying a latitude and longitude. The plugin will determine the sunrise and sunset times for that location and switch themes accordingly.
+- **Solar Event**: Provide a location by specifying a latitude and longitude. The plugin will determine the sunrise and sunset times for that location and switch themes accordingly.
 - **Time**: Specify a time range (e.g., 6 AM to 6 PM) for the theme switch. The plugin will change themes based on the current time of day.
 - **Random**: Randomly select a theme from a predefined list. This can be useful for applications that want to provide a different experience each time they are used.
 
@@ -24,13 +24,13 @@ Select two themes for switching. The plugin will automatically switch between th
 ## Usage
 
 1. Open the settings under `File > Settings > Sunset`.
-2. Select a strategy (Location, Time, Random).
+2. Select a strategy (Solar Event, Time, Random).
 3. Configure the desired themes and parameters.
 4. Save the settings and enjoy automatic theme switching!
 
 ## Examples
 
-### Location Strategy
+### Solar Event Strategy
 - Set the coordinates for your city, and the plugin will automatically switch between themes based on sunrise and sunset.
 
 ### Time Strategy

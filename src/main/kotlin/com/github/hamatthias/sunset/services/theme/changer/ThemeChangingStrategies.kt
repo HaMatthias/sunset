@@ -8,7 +8,7 @@ enum class ThemeChangingStrategies(
   val displayName: String,
   val strategyImplementation: ThemeChanger
 ) {
-  LOCATION(SettingsBundle.setting("label.radio.strategy.location"), Location),
+  SOLAR_EVENT(SettingsBundle.setting("label.radio.strategy.solarevent"), SolarEvent),
   DAY_AND_NIGHT(SettingsBundle.setting("label.radio.strategy.time"), DayAndNight),
   RANDOM(SettingsBundle.setting("label.radio.strategy.random"), DiceRoller)
 }

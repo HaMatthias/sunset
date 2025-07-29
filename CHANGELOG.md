@@ -9,7 +9,11 @@
 - Added updates from IntelliJ Platform Plugin Template repository
 
 ### Fixed
-- Immediate theme change when installing the plugin. Instead, the current installed theme is set as default
+- Immediate theme change when installing the plugin. Instead, the current installed theme is set as default.
+- Set a default theme as string if no theme is installed.
+
+### Changed
+- Rename the location strategy to solar event strategy
 
 ## [0.0.3] - 2025-07-22
 
