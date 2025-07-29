@@ -42,7 +42,7 @@ class SunsetSettings : SimplePersistentStateComponent<SunsetSettings.State>(Stat
     var randomEdgeInterval by property(3)
 
     // Theme
-    var dayTheme by string(LafManager.getInstance().currentUIThemeLookAndFeel.name)
-    var nightTheme by string(LafManager.getInstance().currentUIThemeLookAndFeel.name)
+    var dayTheme by string(LafManager.getInstance().currentUIThemeLookAndFeel?.name ?: "IntelliJ Light")
+    var nightTheme by string(LafManager.getInstance().currentUIThemeLookAndFeel?.name ?: "Darcula")
   }
 }
