@@ -54,9 +54,11 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
       }
       row(SettingsBundle.setting("label.input.latitude")) {
         textField()
-          .bindText({ sunsetSettingsState.latitude }, {sunsetSettingsState.latitude = it})
+          .bindText({ sunsetSettingsState.latitude }, { sunsetSettingsState.latitude = it })
           .validationOnInput(::validateDecimalInput)
           .validationOnApply(::validateDecimalInput)
+          .comment(SettingsBundle.setting("label.comment.solarevent")
+        )
       }
 
       // Time
