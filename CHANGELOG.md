@@ -7,7 +7,7 @@
 - Added tooltip for the random strategy in the settings page.
 - Allow to back up and sync the settings
 - Added updates from IntelliJ Platform Plugin Template repository
-- Small info comment for the solar event strategy in the settings pane.
+- Small info comment for the solar event strategy showing the next solar events.
 
 ### Fixed
 - Immediate theme change when installing the plugin. Instead, the current installed theme is set as default.

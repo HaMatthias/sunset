@@ -1,6 +1,7 @@
 package com.github.hamatthias.sunset.settings
 
 import com.github.hamatthias.sunset.services.theme.ThemeGatherer
+import com.github.hamatthias.sunset.services.theme.changer.SolarEvent
 import com.github.hamatthias.sunset.services.theme.changer.ThemeChangingStrategies
 import com.intellij.icons.AllIcons
 import com.intellij.ide.HelpTooltip
@@ -15,6 +16,7 @@ import com.intellij.ui.components.JBTextField
 import com.intellij.ui.dsl.builder.*
 import com.intellij.ui.layout.ValidationInfoBuilder
 import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import javax.swing.DefaultComboBoxModel
 
@@ -57,8 +59,7 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
           .bindText({ sunsetSettingsState.latitude }, { sunsetSettingsState.latitude = it })
           .validationOnInput(::validateDecimalInput)
           .validationOnApply(::validateDecimalInput)
-          .comment(SettingsBundle.setting("label.comment.solarevent")
-        )
+          .comment(buildCommentForSolarEvent())
       }
 
       // Time
@@ -154,11 +155,20 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
       return builder.error(SettingsBundle.setting("input.error.random.value"))
     }
 
-    if (parsedNumber > 24 || parsedNumber < 1) {
+    if (!(1..24).contains(parsedNumber)) {
       logger.info("Random factor out of range: $number")
       return builder.error(SettingsBundle.setting("input.error.random.tooLarge"))
     }
 
     return null
+  }
+
+  private fun buildCommentForSolarEvent(): String {
+    val solarEventTime = SolarEvent.getNextThemeChange()
+    var solarEvent = SettingsBundle.setting("label.comment.solarevent.sunrise")
+    if (SolarEvent.getNextSolarEvent() is dev.jamesyox.kastro.sol.SolarEvent.Sunset) {
+      solarEvent = SettingsBundle.setting("label.comment.solarevent.sunset")
+    }
+    return SettingsBundle.setting("label.comment.solarevent", solarEvent, solarEventTime.toString());
   }
 }
