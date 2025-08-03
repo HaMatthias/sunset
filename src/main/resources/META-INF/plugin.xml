@@ -23,4 +23,10 @@
     <extensions defaultExtensionNs="com.intellij">
         <postStartupActivity implementation="com.github.hamatthias.sunset.services.startup.SunsetStartupActivity" />
     </extensions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup id="Theme change"
+                           displayType="BALLOON"
+                           key="label.notification.title"/>
+    </extensions>
 </idea-plugin>

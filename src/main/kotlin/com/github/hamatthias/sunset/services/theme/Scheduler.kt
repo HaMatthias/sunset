@@ -1,7 +1,10 @@
 package com.github.hamatthias.sunset.services.theme
 
+import com.github.hamatthias.sunset.notification.NotificationGatherer
+import com.intellij.notification.Notifications
 import com.intellij.openapi.application.EDT
 import com.intellij.openapi.components.Service
+import com.intellij.util.Time
 import kotlinx.coroutines.*
 import java.time.Duration
 import java.time.LocalDateTime
@@ -20,12 +23,17 @@ class Scheduler(
       themeChangeJob.cancel()
     }
 
+    val notification = NotificationGatherer.getThemeChangeNotification()
     val now = LocalDateTime.now()
     if (executionTime.isAfter(now)) {
       val delay = Duration.between(now, executionTime).toMillis()
       themeChangeJob = cs.launch {
         withContext(Dispatchers.EDT) {
-          delay(delay)
+          if (delay - Time.MINUTE > 0) {
+            delay(delay - Time.MINUTE.toLong())
+          }
+          Notifications.Bus.notify(notification)
+          delay(Time.MINUTE.toLong())
           themeChangeTask()
         }
       }
