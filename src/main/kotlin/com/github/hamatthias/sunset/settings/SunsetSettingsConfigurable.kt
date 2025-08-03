@@ -16,7 +16,6 @@ import com.intellij.ui.components.JBTextField
 import com.intellij.ui.dsl.builder.*
 import com.intellij.ui.layout.ValidationInfoBuilder
 import java.time.LocalTime
-import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import javax.swing.DefaultComboBoxModel
 
