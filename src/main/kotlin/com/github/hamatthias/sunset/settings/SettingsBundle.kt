@@ -8,7 +8,7 @@ import org.jetbrains.annotations.PropertyKey
 object SettingsBundle {
 
   @NonNls
-  private const val BUNDLE = "settings.labels"
+  private const val BUNDLE = "messages.settings"
 
   private val instance = DynamicBundle(SettingsBundle::class.java, BUNDLE)
 

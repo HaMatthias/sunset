@@ -8,7 +8,7 @@ import com.intellij.notification.NotificationType
 object NotificationGatherer {
 
   fun getThemeChangeNotification(): Notification {
-    val content = SettingsBundle.setting("label.notification.content")
+    val content = NotificationBundle.notification("notification.content.themeChange")
     return NotificationGroupManager.getInstance().getNotificationGroup("Theme change").createNotification(content,
       NotificationType.INFORMATION)
   }
