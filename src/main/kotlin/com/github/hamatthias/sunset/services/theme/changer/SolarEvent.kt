@@ -33,18 +33,7 @@ object SolarEvent : ThemeChanger {
   }
 
   override fun getNextThemeChange(): LocalDateTime {
-    val settings = service<SunsetSettings>()
-    val longitude = settings.state.longitude.toDouble()
-    val latitude = settings.state.latitude.toDouble()
-    val now = Clock.System.now()
-
-    val nextSolarEvent = SolarEventSequence(
-      start = now,
-      latitude = latitude,
-      longitude = longitude,
-      requestedSolarEvents = listOf(SolarEvent.Sunrise, SolarEvent.Sunset)
-    ).first()
-
+    val nextSolarEvent = getNextSolarEvent()
     val nextThemeChange = nextSolarEvent.time.toLocalDateTime(TimeZone.currentSystemDefault())
     logger.info("Next solar event is a ${nextSolarEvent::class.simpleName} at: $nextThemeChange")
 
@@ -54,16 +43,7 @@ object SolarEvent : ThemeChanger {
 
   override fun getThemeToApply(): UIThemeLookAndFeelInfo {
     val settings = service<SunsetSettings>()
-    val longitude = settings.state.longitude.toDouble()
-    val latitude = settings.state.latitude.toDouble()
-    val now = Clock.System.now()
-
-    val nextSolarEvent = SolarEventSequence(
-      start = now,
-      latitude = latitude,
-      longitude = longitude,
-      requestedSolarEvents = listOf(SolarEvent.Sunrise, SolarEvent.Sunset)
-    ).first()
+    val nextSolarEvent = getNextSolarEvent()
 
     var theme = settings.state.dayTheme
     if (nextSolarEvent is SolarEvent.Sunrise) {
@@ -72,5 +52,19 @@ object SolarEvent : ThemeChanger {
 
     logger.info("Theme '$theme' needs to be applied")
     return ThemeGatherer.getThemeByName(theme)
+  }
+
+  fun getNextSolarEvent(): SolarEvent {
+    val settings = service<SunsetSettings>()
+    val longitude = settings.state.longitude.toDouble()
+    val latitude = settings.state.latitude.toDouble()
+    val now = Clock.System.now()
+
+    return SolarEventSequence(
+      start = now,
+      latitude = latitude,
+      longitude = longitude,
+      requestedSolarEvents = listOf(SolarEvent.Sunrise, SolarEvent.Sunset)
+    ).first()
   }
 }
