@@ -15,6 +15,7 @@ import com.intellij.ui.SimpleListCellRenderer
 import com.intellij.ui.components.JBTextField
 import com.intellij.ui.dsl.builder.*
 import com.intellij.ui.layout.ValidationInfoBuilder
+import com.intellij.util.text.DateFormatUtil
 import java.time.LocalTime
 import java.time.format.DateTimeParseException
 import javax.swing.DefaultComboBoxModel
@@ -163,11 +164,12 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
   }
 
   private fun buildCommentForSolarEvent(): String {
-    val solarEventTime = SolarEvent.getNextThemeChange()
-    var solarEvent = SettingsBundle.setting("label.comment.solarevent.sunrise")
-    if (SolarEvent.getNextSolarEvent() is dev.jamesyox.kastro.sol.SolarEvent.Sunset) {
-      solarEvent = SettingsBundle.setting("label.comment.solarevent.sunset")
+    val solarEvent = SolarEvent.getNextSolarEvent()
+    var solarEventLabel = SettingsBundle.setting("label.comment.solarevent.sunrise")
+    if (solarEvent is dev.jamesyox.kastro.sol.SolarEvent.Sunset) {
+      solarEventLabel = SettingsBundle.setting("label.comment.solarevent.sunset")
     }
-    return SettingsBundle.setting("label.comment.solarevent", solarEvent, solarEventTime.toString());
+    val solarEventTimeLabel = DateFormatUtil.formatPrettyDateTime(solarEvent.time.toEpochMilliseconds())
+    return SettingsBundle.setting("label.comment.solarevent", solarEventLabel, solarEventTimeLabel);
   }
 }
