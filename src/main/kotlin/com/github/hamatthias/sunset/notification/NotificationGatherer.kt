@@ -1,6 +1,5 @@
 package com.github.hamatthias.sunset.notification
 
-import com.github.hamatthias.sunset.settings.SettingsBundle
 import com.intellij.notification.Notification
 import com.intellij.notification.NotificationGroupManager
 import com.intellij.notification.NotificationType
