@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Allow up to 19 digits for longitude/latitude in the settings. (+1 dot character = 20 characters)
+
 ## [0.0.4] - 2025-08-03
 
 ### Added

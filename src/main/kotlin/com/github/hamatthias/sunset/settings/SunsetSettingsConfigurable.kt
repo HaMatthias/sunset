@@ -20,6 +20,8 @@ import java.time.LocalTime
 import java.time.format.DateTimeParseException
 import javax.swing.DefaultComboBoxModel
 
+import dev.jamesyox.kastro.sol.SolarEvent as KastroSolarEvent
+
 /**
  * Provides controller functionality for application settings.
  * This class is called by the IntelliJ platform
@@ -130,13 +132,13 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
   private fun validateDecimalInput(builder: ValidationInfoBuilder, textField: JBTextField): ValidationInfo? {
     val decimal = textField.text
 
-    if (decimal.length > 10) {
+    if (decimal.length > 20) {
       logger.info("Invalid decimal number entered: $decimal")
       return builder.error(SettingsBundle.setting("input.error.decimal.length"))
     }
 
     try {
-      decimal.toFloat()
+      decimal.toBigDecimal()
       return null
     } catch (_: NumberFormatException) {
       logger.info("Invalid decimal number entered: $decimal")
@@ -166,10 +168,10 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
   private fun buildCommentForSolarEvent(): String {
     val solarEvent = SolarEvent.getNextSolarEvent()
     var solarEventLabel = SettingsBundle.setting("label.comment.solarevent.sunrise")
-    if (solarEvent is dev.jamesyox.kastro.sol.SolarEvent.Sunset) {
+    if (solarEvent is KastroSolarEvent.Sunset) {
       solarEventLabel = SettingsBundle.setting("label.comment.solarevent.sunset")
     }
     val solarEventTimeLabel = DateFormatUtil.formatPrettyDateTime(solarEvent.time.toEpochMilliseconds())
-    return SettingsBundle.setting("label.comment.solarevent", solarEventLabel, solarEventTimeLabel);
+    return SettingsBundle.setting("label.comment.solarevent", solarEventLabel, solarEventTimeLabel)
   }
 }
