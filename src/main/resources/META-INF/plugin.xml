@@ -10,18 +10,18 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationConfigurable
-            parentId="tools"
-            instance="com.github.hamatthias.sunset.settings.SunsetSettingsConfigurable"
-            id="com.github.hamatthias.sunset.settings.SunsetSettingsConfigurable"
-            displayName="Sunset" />
+                parentId="tools"
+                instance="com.github.hamatthias.sunset.settings.SunsetSettingsConfigurable"
+                id="com.github.hamatthias.sunset.settings.SunsetSettingsConfigurable"
+                displayName="Sunset"/>
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.hamatthias.sunset.settings.SunsetSettings" />
+        <applicationService serviceImplementation="com.github.hamatthias.sunset.settings.SunsetSettings"/>
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
-        <postStartupActivity implementation="com.github.hamatthias.sunset.services.startup.SunsetStartupActivity" />
+        <postStartupActivity implementation="com.github.hamatthias.sunset.services.startup.SunsetStartupActivity"/>
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
@@ -29,4 +29,20 @@
                            displayType="BALLOON"
                            key="notification.title.themeChange"/>
     </extensions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <iconMapper mappingFile="SunsetIconMappings.json"/>
+    </extensions>
+
+    <actions resource-bundle="messages.actions">
+        <action
+                id="com.github.hamatthias.sunset.actions.SwapTheme"
+                class="com.github.hamatthias.sunset.actions.SwapTheme"
+                icon="/icons/swapActionDefault.svg">
+            <override-text place="MainToolbar"/>
+            <override-text place="MainMenu"/>
+            <add-to-group group-id="MainToolbarRight" anchor="last"/>
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>
