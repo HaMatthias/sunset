@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Plugin Action: Swap Theme -> Swaps the theme via action to the other theme set in the settings.
+
 ### Changed
 
 - Allow up to 19 digits for longitude/latitude in the settings. (+1 dot character = 20 characters)
