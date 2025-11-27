@@ -1,0 +1,9 @@
+{
+  "icons": {
+    "expui": {
+      "action": {
+        "swapActionDefault": "icons/swapActionDefault"
+      }
+    }
+  }
+}
