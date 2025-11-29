@@ -12,6 +12,7 @@
 
 - Allow up to 19 digits for longitude/latitude in the settings. (+1 dot character = 20 characters)
 - Apply changes from plugin template 2.4.0
+- Move settings dialog to "Appearance & Behavior" section in the IDE settings
 
 ## [0.0.4] - 2025-08-03
 
