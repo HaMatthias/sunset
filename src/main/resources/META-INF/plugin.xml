@@ -13,7 +13,8 @@
                 parentId="tools"
                 instance="com.github.hamatthias.sunset.settings.SunsetSettingsConfigurable"
                 id="com.github.hamatthias.sunset.settings.SunsetSettingsConfigurable"
-                displayName="Sunset"/>
+                bundle="messages.settings"
+                key="displayName"/>
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
