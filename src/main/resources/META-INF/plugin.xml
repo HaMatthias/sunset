@@ -10,7 +10,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationConfigurable
-                parentId="tools"
+                parentId="appearance"
                 instance="com.github.hamatthias.sunset.settings.SunsetSettingsConfigurable"
                 id="com.github.hamatthias.sunset.settings.SunsetSettingsConfigurable"
                 bundle="messages.settings"
