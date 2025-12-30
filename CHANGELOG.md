@@ -7,6 +7,7 @@
 ### Added
 
 - Plugin Action: Swap Theme → Swaps the theme via action to the other theme set in the settings.
+- Setting to disable the theme changing mechanics
 
 ### Fixed
 
