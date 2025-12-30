@@ -1,5 +1,11 @@
 # Sunset
 
+![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.hamatthias.sunset?label=Downloads)
+![Version](https://img.shields.io/jetbrains/plugin/v/com.github.hamatthias.sunset?label=Version)
+![License](https://img.shields.io/github/license/hamatthias/sunset)
+
+![Build](https://img.shields.io/github/actions/workflow/status/hamatthias/sunset/build.yml)
+
 <!-- Plugin description -->
 Adds the functionality to change between desired themes for one of the following strategies:
 - **Solar Event**: Provide a location by specifying a latitude and longitude. The plugin will determine the sunrise and sunset times for that location and switch themes accordingly.
