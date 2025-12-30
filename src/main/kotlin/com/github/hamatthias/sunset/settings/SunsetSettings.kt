@@ -1,7 +1,6 @@
 package com.github.hamatthias.sunset.settings
 
 import com.github.hamatthias.sunset.services.theme.changer.ThemeChangingStrategies
-import com.intellij.ide.ui.LafManager
 import com.intellij.openapi.components.*
 
 @Service
@@ -42,7 +41,7 @@ class SunsetSettings : SimplePersistentStateComponent<SunsetSettings.State>(Stat
     var randomEdgeInterval by property(3)
 
     // Theme
-    var dayTheme by string(LafManager.getInstance().currentUIThemeLookAndFeel?.name ?: "IntelliJ Light")
-    var nightTheme by string(LafManager.getInstance().currentUIThemeLookAndFeel?.name ?: "Darcula")
+    var dayTheme by string()
+    var nightTheme by string()
   }
 }

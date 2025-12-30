@@ -6,7 +6,11 @@
 
 ### Added
 
-- Plugin Action: Swap Theme -> Swaps the theme via action to the other theme set in the settings.
+- Plugin Action: Swap Theme → Swaps the theme via action to the other theme set in the settings.
+
+### Fixed
+
+- Fixed desired themes were not stored correctly.
 
 ### Changed
 
