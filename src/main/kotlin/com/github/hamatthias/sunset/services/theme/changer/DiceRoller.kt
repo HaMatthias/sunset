@@ -14,7 +14,7 @@ object DiceRoller : ThemeChanger {
 
   private val logger = logger<DiceRoller>()
 
-  override fun applyTheme() {
+  override fun applyAndScheduleTheme() {
     val current = LafManager.getInstance().currentUIThemeLookAndFeel
     val nextTheme = getThemeToApply()
 

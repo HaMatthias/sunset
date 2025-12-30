@@ -23,8 +23,11 @@ class SunsetStartupActivity : ProjectActivity {
 
     // Execute next theme change
     withContext(Dispatchers.EDT) {
-      val strategy = service<SunsetSettings>().state.strategy.strategyImplementation
-      strategy.applyTheme()
+      val state = service<SunsetSettings>().state
+      if (state.enabled) {
+        val strategy = state.strategy.strategyImplementation
+        strategy.applyAndScheduleTheme()
+      }
     }
   }
 }

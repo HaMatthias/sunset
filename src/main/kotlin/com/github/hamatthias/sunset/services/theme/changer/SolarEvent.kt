@@ -18,7 +18,7 @@ object SolarEvent : ThemeChanger {
 
   private val logger = logger<com.github.hamatthias.sunset.services.theme.changer.SolarEvent>()
 
-  override fun applyTheme() {
+  override fun applyAndScheduleTheme() {
     val themeToApply = getThemeToApply()
     val currentTheme = LafManager.getInstance().currentUIThemeLookAndFeel
     logger.debug("Theme be applied: ${themeToApply.id} - Current Theme: ${currentTheme.id}")

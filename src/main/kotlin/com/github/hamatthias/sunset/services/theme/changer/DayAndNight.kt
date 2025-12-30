@@ -14,7 +14,7 @@ object DayAndNight : ThemeChanger {
 
   private val logger = logger<DayAndNight>()
 
-  override fun applyTheme() {
+  override fun applyAndScheduleTheme() {
     val themeToApply = getThemeToApply()
     val currentTheme = LafManager.getInstance().currentUIThemeLookAndFeel
     logger.debug("Theme to apply: ${themeToApply.id} - Current Theme: ${currentTheme.id}")
