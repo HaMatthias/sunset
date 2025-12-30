@@ -104,6 +104,12 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
         comboBox(DefaultComboBoxModel(ThemeGatherer.getThemeNames().toTypedArray()))
           .bindItem(sunsetSettingsState::nightTheme)
       }
+
+      separator().rowComment(SettingsBundle.setting("label.row.general"))
+      row() {
+        checkBox(SettingsBundle.setting("label.checkbox.enable"))
+          .bindSelected(sunsetSettingsState::enabled)
+      }
       logger.info("Returning settings panel")
     }
   }

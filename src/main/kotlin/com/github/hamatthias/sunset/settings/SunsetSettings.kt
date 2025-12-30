@@ -43,5 +43,8 @@ class SunsetSettings : SimplePersistentStateComponent<SunsetSettings.State>(Stat
     // Theme
     var dayTheme by string()
     var nightTheme by string()
+
+    // General
+    var enabled by property(true)
   }
 }
