@@ -11,7 +11,7 @@ import java.time.LocalDateTime
  */
 interface ThemeChanger {
 
-  fun applyTheme()
+  fun applyAndScheduleTheme()
 
   fun getNextThemeChange(): LocalDateTime
 
@@ -23,6 +23,6 @@ interface ThemeChanger {
     val nextThemeChange = getNextThemeChange()
     logger.info("Next theme change will be scheduled at: $nextThemeChange")
 
-    service.scheduleThemeChange(nextThemeChange) { applyTheme() }
+    service.scheduleThemeChange(nextThemeChange) { applyAndScheduleTheme() }
   }
 }

@@ -1,5 +1,6 @@
 package com.github.hamatthias.sunset.settings
 
+import com.github.hamatthias.sunset.services.theme.Scheduler
 import com.github.hamatthias.sunset.services.theme.ThemeGatherer
 import com.github.hamatthias.sunset.services.theme.changer.SolarEvent
 import com.github.hamatthias.sunset.services.theme.changer.ThemeChangingStrategies
@@ -118,8 +119,12 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
     val sunsetSettingsState = service<SunsetSettings>().state
     sunsetSettingsState.apply {
       super.apply()
-      val strategy = sunsetSettingsState.strategy.strategyImplementation
-      strategy.applyTheme()
+      if (sunsetSettingsState.enabled) {
+        val strategy = sunsetSettingsState.strategy.strategyImplementation
+        strategy.applyAndScheduleTheme()
+      } else {
+        service<Scheduler>().cancelThemeChange()
+      }
     }
   }
 

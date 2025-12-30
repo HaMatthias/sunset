@@ -39,4 +39,8 @@ class Scheduler(
       }
     }
   }
+
+  fun cancelThemeChange() {
+    themeChangeJob.cancel()
+  }
 }
