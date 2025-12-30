@@ -10,7 +10,7 @@
 Adds the functionality to change between desired themes for one of the following strategies:
 - **Solar Event**: Provide a location by specifying a latitude and longitude. The plugin will determine the sunrise and sunset times for that location and switch themes accordingly.
 - **Time**: Specify a time range (e.g., 6 AM to 6 PM) for the theme switch. The plugin will change themes based on the current time of day.
-- **Random**: Randomly select a theme from a predefined list. This can be useful for applications that want to provide a different experience each time they are used.
+- **Random**: Randomly select a theme off installed ones. This can be useful for applications that want to provide a different experience each time they are used.
 
 Select two themes for switching. The plugin will automatically switch between the two themes based on the selected strategy.
 <!-- Plugin description end -->
@@ -22,11 +22,6 @@ Select two themes for switching. The plugin will automatically switch between th
 3. Search for "Sunset" in the JetBrains Marketplace.
 4. Click `Install` and restart IntelliJ (If required).
 
-## Requirements
-
-- IntelliJ IDEA 2021.1 or newer.
-- Java 11 or higher.
-
 ## Usage
 
 1. Open the settings under `File > Settings > Sunset`.
@@ -37,13 +32,13 @@ Select two themes for switching. The plugin will automatically switch between th
 ## Examples
 
 ### Solar Event Strategy
-- Set the coordinates for your city, and the plugin will automatically switch between themes based on sunrise and sunset.
+- Set the coordinates for your location, and the plugin will automatically switch between themes based on sunrise and sunset.
 
 ### Time Strategy
-- Choose 6:00 AM to 6:00 PM for a light theme and 6:00 PM to 6:00 AM for a dark theme.
+- Choose a time range (e.g., 8 AM to 8 PM), and the plugin will switch themes accordingly.
 
 ### Random Strategy
-- Select a list of themes, and the plugin will randomly switch between them at specified intervals defined by the factor.
+- The plugin will randomly switch between all installed themes at specified intervals defined by the factor.
 
 ## Contributing
 
