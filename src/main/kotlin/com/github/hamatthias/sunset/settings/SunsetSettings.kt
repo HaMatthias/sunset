@@ -6,10 +6,20 @@ import com.intellij.openapi.components.*
 @Service
 @State(
   name = "com.github.hamatthias.sunset.settings.SunsetSettings",
-  storages = [Storage(
-    "SdkSettingsPlugin.xml",
-    roamingType = RoamingType.DEFAULT
-  )],
+  storages = [
+    // New storage location
+    Storage(
+      "SunsetPlugin.xml",
+      roamingType = RoamingType.DEFAULT
+    ),
+
+    // Old storage location (for migration)
+    Storage(
+      "SdkSettingsPlugin.xml",
+      roamingType = RoamingType.DEFAULT,
+      deprecated = true
+    )
+  ],
   category = SettingsCategory.UI
 )
 class SunsetSettings : SimplePersistentStateComponent<SunsetSettings.State>(State()) {
