@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [1.0.0] - 2025-12-30
+
 ### Added
 
 - Plugin Action: Swap Theme → Swaps the theme via action to the other theme set in the settings.
@@ -46,6 +48,7 @@
 - Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
 - Add theme changing strategies
 
-[Unreleased]: https://github.com/HaMatthias/sunset/compare/v0.0.4...HEAD
+[Unreleased]: https://github.com/HaMatthias/sunset/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/HaMatthias/sunset/compare/v0.0.4...v1.0.0
 [0.0.4]: https://github.com/HaMatthias/sunset/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/HaMatthias/sunset/commits/v0.0.3
