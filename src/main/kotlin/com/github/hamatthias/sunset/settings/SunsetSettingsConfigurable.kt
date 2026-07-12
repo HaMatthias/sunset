@@ -119,16 +119,13 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
   }
 
   override fun apply() {
+    super.apply()
     val sunsetSettingsState = service<SunsetSettings>().state
-    sunsetSettingsState.apply {
-
-      super.apply()
-      if (sunsetSettingsState.enabled) {
-        val strategy = sunsetSettingsState.strategy.strategyImplementation
-        strategy.applyAndScheduleTheme()
-      } else {
-        service<Scheduler>().cancelThemeChange()
-      }
+    if (sunsetSettingsState.enabled) {
+      val strategy = sunsetSettingsState.strategy.strategyImplementation
+      strategy.applyAndScheduleTheme()
+    } else {
+      service<Scheduler>().cancelThemeChange()
     }
   }
 
