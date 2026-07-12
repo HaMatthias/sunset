@@ -59,6 +59,10 @@ intellijPlatform {
                 subList(indexOf(start) + 1, indexOf(end)).joinToString("\n").let(::markdownToHTML)
             }
         }
+
+        ideaVersion {
+          sinceBuild = "243"
+        }
     }
 }
 
