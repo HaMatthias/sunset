@@ -14,13 +14,17 @@ import com.intellij.openapi.ui.ValidationInfo
 import com.intellij.ui.EnumComboBoxModel
 import com.intellij.ui.SimpleListCellRenderer
 import com.intellij.ui.components.JBTextField
-import com.intellij.ui.dsl.builder.*
+import com.intellij.ui.dsl.builder.bindIntText
+import com.intellij.ui.dsl.builder.bindItem
+import com.intellij.ui.dsl.builder.bindSelected
+import com.intellij.ui.dsl.builder.bindText
+import com.intellij.ui.dsl.builder.panel
+import com.intellij.ui.dsl.builder.toNullableProperty
 import com.intellij.ui.layout.ValidationInfoBuilder
 import com.intellij.util.text.DateFormatUtil
 import java.time.LocalTime
 import java.time.format.DateTimeParseException
 import javax.swing.DefaultComboBoxModel
-
 import dev.jamesyox.kastro.sol.SolarEvent as KastroSolarEvent
 
 /**
@@ -45,7 +49,7 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
       row {
         comboBox(
           model = EnumComboBoxModel(ThemeChangingStrategies::class.java),
-          renderer = SimpleListCellRenderer.create("") {it.displayName}
+          renderer = SimpleListCellRenderer.create("") { it.displayName }
         ).bindItem(sunsetSettingsState::strategy.toNullableProperty())
       }
 
@@ -53,7 +57,7 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
       separator().rowComment(SettingsBundle.setting("label.row.solarevent"))
       row(SettingsBundle.setting("label.input.longitude")) {
         textField()
-          .bindText({ sunsetSettingsState.longitude }, {sunsetSettingsState.longitude = it})
+          .bindText({ sunsetSettingsState.longitude }, { sunsetSettingsState.longitude = it })
           .validationOnInput(::validateDecimalInput)
           .validationOnApply(::validateDecimalInput)
       }
@@ -69,13 +73,13 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
       separator().rowComment(SettingsBundle.setting("label.row.time"))
       row(SettingsBundle.setting("label.input.firstChange")) {
         textField()
-          .bindText({ sunsetSettingsState.timeToDayTheme.toString() }, {sunsetSettingsState.timeToDayTheme = it})
+          .bindText({ sunsetSettingsState.timeToDayTheme.toString() }, { sunsetSettingsState.timeToDayTheme = it })
           .validationOnInput(::validateTimeInput)
           .validationOnApply(::validateTimeInput)
       }
       row(SettingsBundle.setting("label.input.secondChange")) {
         textField()
-          .bindText({ sunsetSettingsState.timeToNightTheme.toString() }, {sunsetSettingsState.timeToNightTheme = it})
+          .bindText({ sunsetSettingsState.timeToNightTheme.toString() }, { sunsetSettingsState.timeToNightTheme = it })
           .validationOnInput(::validateTimeInput)
           .validationOnApply(::validateTimeInput)
       }
@@ -118,6 +122,7 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
   override fun apply() {
     val sunsetSettingsState = service<SunsetSettings>().state
     sunsetSettingsState.apply {
+
       super.apply()
       if (sunsetSettingsState.enabled) {
         val strategy = sunsetSettingsState.strategy.strategyImplementation
