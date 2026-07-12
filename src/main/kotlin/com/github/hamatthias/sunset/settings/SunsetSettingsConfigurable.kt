@@ -33,9 +33,8 @@ import dev.jamesyox.kastro.sol.SolarEvent as KastroSolarEvent
  */
 
 class SunsetSettingsConfigurable : BoundSearchableConfigurable(
-  SettingsBundle.setting("label.panel.settings"),
-  helpTopic = "2", // TODO
-  _id = "1" // TODO
+  SettingsBundle.setting("displayName"),
+  "com.github.hamatthias.sunset.settings.SunsetSettingsConfigurable"
 ) {
 
   private val logger = logger<SunsetSettingsConfigurable>()
