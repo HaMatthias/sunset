@@ -8,6 +8,7 @@
 
     <resource-bundle>messages.notifications</resource-bundle>
 
+    <!-- Settings dialogue -->
     <extensions defaultExtensionNs="com.intellij">
         <applicationConfigurable
                 parentId="appearance"
