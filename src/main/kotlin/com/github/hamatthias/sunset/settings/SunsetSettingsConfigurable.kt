@@ -110,7 +110,7 @@ class SunsetSettingsConfigurable : BoundSearchableConfigurable(
       }
 
       separator().rowComment(SettingsBundle.setting("label.row.general"))
-      row() {
+      row {
         checkBox(SettingsBundle.setting("label.checkbox.enable"))
           .bindSelected(sunsetSettingsState::enabled)
       }
