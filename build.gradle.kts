@@ -12,8 +12,8 @@ plugins {
     alias(libs.plugins.kover) // Gradle Kover Plugin
 }
 
-group = providers.gradleProperty("pluginGroup").get()
-version = providers.gradleProperty("pluginVersion").get()
+group = "com.github.hamatthias.sunset"
+version = "1.1.0"
 
 // Set the JVM language level used to build the project.
 kotlin {
